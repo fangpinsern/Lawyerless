@@ -13,6 +13,7 @@ import "react-accessible-accordion/dist/fancy-example.css";
 
 function Questions(props) {
   return (
+    
     <AccordionItem>
       <AccordionItemHeading>
         <AccordionItemButton>{props.faq.question}</AccordionItemButton>
