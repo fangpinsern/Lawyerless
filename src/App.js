@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
-import logo from './logo.svg';
 import './App.css';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Resources from './resources/pages/Resources';
