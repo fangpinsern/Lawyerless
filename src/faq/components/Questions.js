@@ -9,11 +9,10 @@ import {
 
 import "./Questions.css";
 
-import "react-accessible-accordion/dist/fancy-example.css";
+import "../pages/accordion.css";
 
 function Questions(props) {
   return (
-    
     <AccordionItem>
       <AccordionItemHeading>
         <AccordionItemButton>{props.faq.question}</AccordionItemButton>
