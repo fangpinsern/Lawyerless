@@ -21,15 +21,23 @@ function Faq() {
     }
   ];
   return (
-    <Card>
-      <Accordion allowZeroExpanded="true">
-        {faqs.map(faq => {
-          return <Questions faq={faq} />;
-        })}
-      </Accordion>
-      <br />
-      <ContactUs />
-    </Card>
+    <React.Fragment>
+      <div className="faq-image">
+        <img
+          src={require("../../homePage/images/sebastian-pichler-bAQH53VquTc-unsplash.png")}
+          alt="This is the faq page"
+        />
+      </div>
+      <Card>
+        <Accordion allowZeroExpanded="true">
+          {faqs.map(faq => {
+            return <Questions faq={faq} />;
+          })}
+        </Accordion>
+        <br />
+        <ContactUs />
+      </Card>
+    </React.Fragment>
   );
 }
 

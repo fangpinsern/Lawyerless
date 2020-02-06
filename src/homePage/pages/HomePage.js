@@ -3,7 +3,14 @@ import React from "react";
 import "./HomePage.css";
 
 function HomePage() {
-    return <h1> This is from the Homepage </h1>
+  return (
+    <div>
+      <img
+        src={require("../images/sebastian-pichler-bAQH53VquTc-unsplash.png")}
+        alt="This is the homepage image"
+      />
+    </div>
+  );
 }
 
 export default HomePage;
