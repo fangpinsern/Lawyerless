@@ -7,7 +7,7 @@ function HomePage() {
     <div>
       <img
         src={require("../images/sebastian-pichler-bAQH53VquTc-unsplash.png")}
-        alt="This is the homepage image"
+        alt="This is the homepage"
       />
     </div>
   );

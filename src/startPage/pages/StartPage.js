@@ -7,9 +7,9 @@ import Card from "../../shared/UIElements/Card";
 
 
 function StartPage() {
-    const [counter, setCounter] = useState(0);
+    
     const progress = useContext(ProgressContext);
-
+    const [counter, setCounter] = useState(progress.completed);
     const nextStepHandler = event => {
         event.preventDefault();
         progress.increase();
@@ -24,7 +24,7 @@ function StartPage() {
     }
   return (<Card>
       <Button type="button" disabled={counter >= 100} inverse onClick={nextStepHandler}>Next Step</Button>
-      <Button type="button" disabled={counter >= 100} inverse onClick={previousStepHandler}>Previous Step</Button>
+      <Button type="button" disabled={counter <=0} inverse onClick={previousStepHandler}>Previous Step</Button>
   </Card>);
   
 }

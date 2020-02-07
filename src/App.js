@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -35,7 +35,19 @@ function App() {
   }, [completedRate, percentagePerStep]);
   // End context for progress bar percentage
 
-  const progress = useContext(ProgressContext);
+  // Local Storage
+  useEffect(() => {
+    const data = localStorage.getItem('completed-rate');
+    if(data) {
+      setCompletedRate(JSON.parse(data));
+    }
+  }, [setCompletedRate])
+  
+  useEffect(() => {
+    localStorage.setItem('completed-rate', JSON.stringify(completedRate))
+  });
+  // End Local Storage
+
   return (
     <ProgressContext.Provider value={{ completed: completedRate, numSteps: numSteps, increase: increase, decrease: decrease }}>
       <Router>

@@ -10,12 +10,14 @@ import ContactUs from "../components/ContactUs";
 function Faq() {
   const faqs = [
     {
+      key: 1,
       question:
         "Something has come up and I cannot make it for the hearing. What should I do?",
       answer:
         "If you are running late, call the opposing lawyer to inform him that you are on your way, and state your estimated time of arrival. If you are late or absent, the Judge may proceed with the case in your absence. \n Your claim may either be dismissed or judgment may be entered against you."
     },
     {
+      key: 2,
       question: "I am stupid, what do I do?",
       answer: "Don't be stupid"
     }
@@ -31,7 +33,7 @@ function Faq() {
       <Card>
         <Accordion allowZeroExpanded="true">
           {faqs.map(faq => {
-            return <Questions faq={faq} />;
+            return <Questions key={faq.key} faq={faq} />;
           })}
         </Accordion>
         <br />
