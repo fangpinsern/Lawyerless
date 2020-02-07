@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import "./StartPage.css";
+import { ProgressContext } from "../../shared/context/progressBar-context";
+import Button from "../../shared/components/FormElements/Button";
+import Card from "../../shared/UIElements/Card";
+
 
 function StartPage() {
-  return <h1>This is from the start page</h1>
+    const [counter, setCounter] = useState(0);
+    const progress = useContext(ProgressContext);
+
+    const nextStepHandler = event => {
+        event.preventDefault();
+        progress.increase();
+        setCounter(counter + (100/progress.numSteps));
+        console.log(counter);
+    }
+    const previousStepHandler = event => {
+        event.preventDefault();
+        progress.decrease();
+        setCounter(counter - (100/progress.numSteps));
+        console.log(counter);
+    }
+  return (<Card>
+      <Button type="button" disabled={counter >= 100} inverse onClick={nextStepHandler}>Next Step</Button>
+      <Button type="button" disabled={counter >= 100} inverse onClick={previousStepHandler}>Previous Step</Button>
+  </Card>);
+  
 }
 
 export default StartPage;

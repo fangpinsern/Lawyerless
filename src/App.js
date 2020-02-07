@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -18,13 +18,31 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import StartPage from "./startPage/pages/StartPage";
 
 function App() {
+
+  // Context for progress bar percentage
+  const numSteps = 5;
+  const percentagePerStep = 100 / numSteps;
+  const [completedRate, setCompletedRate] = useState(0);
+
+  const increase = useCallback(() => {
+    if (completedRate < 100) {
+      setCompletedRate(completedRate + percentagePerStep);
+    }
+  }, [completedRate, percentagePerStep]);
+
+  const decrease = useCallback(() => {
+      setCompletedRate(completedRate - percentagePerStep);
+  }, [completedRate, percentagePerStep]);
+  // End context for progress bar percentage
+
+  const progress = useContext(ProgressContext);
   return (
-    <ProgressContext.Provider value={{ completed: 0 }}>
+    <ProgressContext.Provider value={{ completed: completedRate, numSteps: numSteps, increase: increase, decrease: decrease }}>
       <Router>
         <MainNavigation />
 
         <main>
-          <ProgressBar animated now={45} />
+          <ProgressBar animated now={completedRate} />
           <Switch>
             <Route path="/" exact>
               <HomePage />
