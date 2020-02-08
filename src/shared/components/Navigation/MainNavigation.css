@@ -26,6 +26,11 @@
   color: black;
 }
 
+.main-navigation__title a:hover {
+  text-decoration: none;
+  color: black;
+}
+
 .main-navigation__header-nav {
   display: none;
   margin: 1rem;

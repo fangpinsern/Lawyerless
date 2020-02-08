@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
+  Link
 } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "./App.css";
@@ -18,7 +19,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import StartPage from "./startPage/pages/StartPage";
 
 function App() {
-
   // Context for progress bar percentage
   const numSteps = 5;
   const percentagePerStep = 100 / numSteps;
@@ -31,30 +31,39 @@ function App() {
   }, [completedRate, percentagePerStep]);
 
   const decrease = useCallback(() => {
-      setCompletedRate(completedRate - percentagePerStep);
+    setCompletedRate(completedRate - percentagePerStep);
   }, [completedRate, percentagePerStep]);
   // End context for progress bar percentage
 
   // Local Storage
   useEffect(() => {
-    const data = localStorage.getItem('completed-rate');
-    if(data) {
+    const data = localStorage.getItem("completed-rate");
+    if (data) {
       setCompletedRate(JSON.parse(data));
     }
-  }, [setCompletedRate])
-  
+  }, [setCompletedRate]);
+
   useEffect(() => {
-    localStorage.setItem('completed-rate', JSON.stringify(completedRate))
+    localStorage.setItem("completed-rate", JSON.stringify(completedRate));
   });
   // End Local Storage
 
   return (
-    <ProgressContext.Provider value={{ completed: completedRate, numSteps: numSteps, increase: increase, decrease: decrease }}>
+    <ProgressContext.Provider
+      value={{
+        completed: completedRate,
+        numSteps: numSteps,
+        increase: increase,
+        decrease: decrease
+      }}
+    >
       <Router>
         <MainNavigation />
 
         <main>
-          <ProgressBar animated now={completedRate} />
+          <Link to="/start">
+            <ProgressBar animated now={completedRate} />
+          </Link>
           <Switch>
             <Route path="/" exact>
               <HomePage />
