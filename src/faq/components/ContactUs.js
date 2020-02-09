@@ -52,13 +52,11 @@ function ContactUs() {
       if (res.data.msg === "success") {
         alert("Question sent. We will reply to your email as soon as possible");
         resetForm();
-        console.log(formState);
       } else if (res.data.msg === "fail") {
         alert("Question failed to send. Please try again.");
       }
     });
 
-    console.log(name + " " + email + " " + question);
   };
 
   return (
