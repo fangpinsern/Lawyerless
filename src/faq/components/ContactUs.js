@@ -30,6 +30,7 @@ function ContactUs() {
     false
   );
 
+  // FAQ form submit handling
   function resetForm() {
     window.location.reload();
   }
@@ -58,6 +59,8 @@ function ContactUs() {
     });
 
   };
+
+  // End of FAQ form submit handling
 
   return (
     <form className="contact-form" onSubmit={faqSubmitHandler}>
