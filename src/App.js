@@ -7,16 +7,19 @@ import {
   Link
 } from "react-router-dom";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import "./App.css";
+
+// Imports from local components
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Resources from "./resources/pages/Resources";
 import Faq from "./faq/pages/Faq";
 import AboutUs from "./aboutus/pages/AboutUs";
 import HomePage from "./homePage/pages/HomePage";
+import StartPage from "./startPage/pages/StartPage";
 import { ProgressContext } from "./shared/context/progressBar-context";
 
+// Imports for styling
+import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import StartPage from "./startPage/pages/StartPage";
 
 function App() {
   // Context for progress bar percentage
@@ -62,7 +65,7 @@ function App() {
 
         <main>
           <Link to="/start">
-            <ProgressBar animated now={completedRate} />
+            <ProgressBar animated variant="success" now={completedRate} />
           </Link>
           <Switch>
             <Route path="/" exact>
