@@ -23,19 +23,23 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // Context for progress bar percentage
-  const numSteps = 5;
+  const [numSteps, setNumSteps] = useState(5);
   const percentagePerStep = 100 / numSteps;
   const [completedRate, setCompletedRate] = useState(0);
 
   const increase = useCallback(() => {
-    if (completedRate < 100) {
-      setCompletedRate(completedRate + percentagePerStep);
+    if (completedRate < numSteps) {
+      setCompletedRate(completedRate + 1);
     }
-  }, [completedRate, percentagePerStep]);
+  }, [completedRate, numSteps]);
 
   const decrease = useCallback(() => {
-    setCompletedRate(completedRate - percentagePerStep);
-  }, [completedRate, percentagePerStep]);
+    setCompletedRate(completedRate - 1);
+  }, [completedRate]);
+
+  const updateNumSteps = useCallback(numSteps => {
+    setNumSteps(numSteps);
+  }, []);
   // End context for progress bar percentage
 
   // Local Storage
@@ -56,6 +60,7 @@ function App() {
       value={{
         completed: completedRate,
         numSteps: numSteps,
+        updateNumSteps: updateNumSteps,
         increase: increase,
         decrease: decrease
       }}
@@ -65,7 +70,11 @@ function App() {
 
         <main>
           <Link to="/start">
-            <ProgressBar animated variant="success" now={completedRate} />
+            <ProgressBar
+              animated
+              variant="success"
+              now={completedRate * percentagePerStep}
+            />
           </Link>
           <Switch>
             <Route path="/" exact>
