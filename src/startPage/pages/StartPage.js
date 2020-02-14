@@ -5,7 +5,8 @@ import { ProgressContext } from "../../shared/context/progressBar-context";
 import CaseType from "../components/CaseType";
 import {
   VALIDATOR_REQUIRE,
-  VALIDATOR_DATE
+  VALIDATOR_DATE,
+  VALIDATOR_NUMBER
 } from "../../shared/util/validators";
 
 // Imports for styling
@@ -101,7 +102,7 @@ function StartPage() {
         <GeneralForm
           key={step}
           formFieldId="valueOfClaim"
-          validators={[VALIDATOR_REQUIRE()]}
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()]}
           nextStep={nextStepHandler}
           prevStep={previousStepHandler}
           formData={committingFormState}
