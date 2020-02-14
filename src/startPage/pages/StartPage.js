@@ -3,12 +3,13 @@ import React, { useContext, useState } from "react";
 // Imports from local components
 import { ProgressContext } from "../../shared/context/progressBar-context";
 import CaseType from "../components/CaseType";
-import ActualForm1 from "../components/ActualForm1";
-import ActualForm2 from "../components/ActualForm2";
+import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
 
 // Imports for styling
 import "./StartPage.css";
 import Button from "../../shared/components/FormElements/Button";
+import { useForm } from "../../shared/hooks/form-hooks";
+import GeneralForm from "../components/GeneralForm";
 
 function StartPage() {
   // Progress bar context
@@ -22,17 +23,26 @@ function StartPage() {
   // End progress bar context
 
   // Form for property damage and personal injury
-  const [committingForm, setCommitingFrom] = useState({
-    numSteps: 3,
-    dateOfIncident: "",
-    valueOfClaim: 0
-  });
+  const [committingFormState, committingFormInputHandler] = useForm(
+    {
+      numSteps: 3,
+      dateOfIncident: {
+        value: "",
+        isValid: false
+      },
+      valueOfClaim: {
+        value: 0,
+        isValid: false
+      }
+    },
+    false
+  );
 
   // Check which from is being used
   const [formType, setFormType] = useState("");
 
   if (formType === "physicalHarm") {
-    progress.updateNumSteps(committingForm.numSteps);
+    progress.updateNumSteps(committingFormState.inputs.numSteps);
   } else {
     progress.updateNumSteps(5);
   }
@@ -53,20 +63,30 @@ function StartPage() {
       );
     case 1:
       return (
-        <ActualForm1
+        <GeneralForm
+          formFieldId="dateOfIncident"
+          validators={[VALIDATOR_REQUIRE()]}
           nextStep={nextStepHandler}
           prevStep={previousStepHandler}
-          formData={committingForm}
-          setFromData={setCommitingFrom}
+          formData={committingFormState}
+          formDataInputHandler={committingFormInputHandler}
+          label="Date"
+          errorText="Please enter a valid date."
+          inputType="input"
         />
       );
     case 2:
       return (
-        <ActualForm2
+        <GeneralForm
+          formFieldId="valueOfClaim"
+          validators={[VALIDATOR_REQUIRE()]}
           nextStep={nextStepHandler}
           prevStep={previousStepHandler}
-          formData={committingForm}
-          setFromData={setCommitingFrom}
+          formData={committingFormState}
+          formDataInputHandler={committingFormInputHandler}
+          label="Value Of Claim"
+          errorText="Please enter a valid value."
+          inputType="input"
         />
       );
     default:
@@ -81,32 +101,6 @@ function StartPage() {
         </React.Fragment>
       );
   }
-  // return (
-  //   <Card>
-  //     <form className="contact-form">
-  //       <select id="case-types" name="typelist">
-  //         <option value="physical-harm">PHYSICAL HARM</option>
-  //         <option value="property-damage">PROPERTY DAMAGE</option>
-  //       </select>
-  //       <Button
-  //         type="button"
-  //         disabled={progress.completed >= 100}
-  //         inverse
-  //         onClick={nextStepHandler}
-  //       >
-  //         Next Step
-  //       </Button>
-  //       <Button
-  //         type="button"
-  //         disabled={progress.completed <= 0}
-  //         inverse
-  //         onClick={previousStepHandler}
-  //       >
-  //         Previous Step
-  //       </Button>
-  //     </form>
-  //   </Card>
-  // );
 }
 
 export default StartPage;

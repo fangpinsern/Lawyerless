@@ -1,28 +1,35 @@
 import React from "react";
 import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/UIElements/Card";
+import Input from "../../shared/components/FormElements/Input";
+import {
+  VALIDATOR_REQUIRE
+} from "../../shared/util/validators";
 
 function ActualForm1(props) {
   const formData = props.formData;
   const nextStepHandler = props.nextStep;
   const prevStepHandler = props.prevStep;
-  const setFromData = props.setFromData;
+  const formDataInputHandler = props.formDataInputHandler;
 
   const dateUpdated = event => {
     event.preventDefault();
-    setFromData({
-      ...formData,
-      dateOfIncident: event.target.value
-    });
-    console.log(props.formType);
     nextStepHandler();
   };
+
   return (
     <Card>
       <form className="contact-form">
-        <label>Value of Claim</label>
-        <input id="valueOfClaim" type="text" />
-        <Button type="button" inverse onClick={dateUpdated}>
+      <Input
+        id="valueOfClaim"
+        element="input"
+        type="text"
+        label="Value Of Claim"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid value."
+        onInput={formDataInputHandler}
+      />
+        <Button type="button" inverse onClick={dateUpdated} disabled={!formData.inputs.valueOfClaim.isValid}>
           Next Step
         </Button>
         <Button type="button" inverse onClick={prevStepHandler}>

@@ -19,7 +19,6 @@ function CaseType(props) {
   const chosenForm = event => {
     event.preventDefault();
     setForm(currentValue);
-    console.log(props.formType);
     nextStepHandler();
   };
   // End Next Step Handlers
@@ -39,14 +38,6 @@ function CaseType(props) {
         <Button type="button" inverse onClick={chosenForm}>
           Next Step
         </Button>
-        {/* <Button
-          type="button"
-          disabled={progress.completed <= 0}
-          inverse
-          onClick={previousStepHandler}
-        >
-          Previous Step
-        </Button> */}
       </form>
     </Card>
   );
