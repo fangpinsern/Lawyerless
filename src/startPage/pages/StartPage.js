@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 // Imports from local components
 import { ProgressContext } from "../../shared/context/progressBar-context";
 import CaseType from "../components/CaseType";
-import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import { VALIDATOR_REQUIRE, VALIDATOR_DATE } from "../../shared/util/validators";
 
 // Imports for styling
 import "./StartPage.css";
@@ -12,6 +12,7 @@ import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
 
 function StartPage() {
+
   // Progress bar context
   const progress = useContext(ProgressContext);
   const nextStepHandler = () => {
@@ -65,14 +66,15 @@ function StartPage() {
       return (
         <GeneralForm
           formFieldId="dateOfIncident"
-          validators={[VALIDATOR_REQUIRE()]}
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATE()]}
           nextStep={nextStepHandler}
           prevStep={previousStepHandler}
           formData={committingFormState}
           formDataInputHandler={committingFormInputHandler}
           label="Date"
-          errorText="Please enter a valid date."
+          errorText="Please enter a valid date and format (DD/MM/YYYY)."
           inputType="input"
+          placeholder="DD/MM/YYYY"
         />
       );
     case 2:

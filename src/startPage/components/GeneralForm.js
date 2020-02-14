@@ -11,6 +11,7 @@ import Input from "../../shared/components/FormElements/Input";
 // inputType
 // label
 // errorText
+// placeholder
 
 function GeneralForm(props) {
   const formData = props.formData;
@@ -18,7 +19,7 @@ function GeneralForm(props) {
   const prevStepHandler = props.prevStep;
   const formDataInputHandler = props.formDataInputHandler;
 
-  const dateUpdated = event => {
+  const formUpdated = event => {
     event.preventDefault();
     nextStepHandler();
   };
@@ -34,6 +35,7 @@ function GeneralForm(props) {
           validators={props.validators}
           errorText={props.errorText}
           onInput={formDataInputHandler}
+          placeholder={props.placeholder}
         />
         <Button type="button" inverse onClick={prevStepHandler}>
           Previous Step
@@ -41,7 +43,7 @@ function GeneralForm(props) {
         <Button
           type="button"
           inverse
-          onClick={dateUpdated}
+          onClick={formUpdated}
           disabled={!formData.inputs.dateOfIncident.isValid}
         >
           Next Step
