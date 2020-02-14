@@ -3,7 +3,10 @@ import React, { useContext, useState } from "react";
 // Imports from local components
 import { ProgressContext } from "../../shared/context/progressBar-context";
 import CaseType from "../components/CaseType";
-import { VALIDATOR_REQUIRE, VALIDATOR_DATE } from "../../shared/util/validators";
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_DATE
+} from "../../shared/util/validators";
 
 // Imports for styling
 import "./StartPage.css";
@@ -12,7 +15,6 @@ import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
 
 function StartPage() {
-
   // Progress bar context
   const progress = useContext(ProgressContext);
   const nextStepHandler = () => {
@@ -26,7 +28,7 @@ function StartPage() {
   // Form for property damage and personal injury
   const [committingFormState, committingFormInputHandler] = useForm(
     {
-      numSteps: 3,
+      numSteps: 4,
       dateOfIncident: {
         value: "",
         isValid: false
@@ -38,6 +40,11 @@ function StartPage() {
     },
     false
   );
+
+  // Check which action
+  const [actionType, setActionType] = useState("");
+
+  // End Check which action
 
   // Check which from is being used
   const [formType, setFormType] = useState("");
@@ -58,13 +65,25 @@ function StartPage() {
       return (
         <CaseType
           nextStep={nextStepHandler}
-          setFormType={setFormType}
-          formtype={formType}
+          setFormType={setActionType}
+          formtype={actionType}
+          optionsAvailable={["Commiting an action", "Responding to an action"]}
         />
       );
     case 1:
       return (
+        <CaseType
+          nextStep={nextStepHandler}
+          prevStep={previousStepHandler}
+          setFormType={setFormType}
+          formtype={formType}
+          optionsAvailable={["Property Damage", "Personal Injury"]}
+        />
+      );
+    case 2:
+      return (
         <GeneralForm
+          key={step}
           formFieldId="dateOfIncident"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATE()]}
           nextStep={nextStepHandler}
@@ -77,9 +96,10 @@ function StartPage() {
           placeholder="DD/MM/YYYY"
         />
       );
-    case 2:
+    case 3:
       return (
         <GeneralForm
+          key={step}
           formFieldId="valueOfClaim"
           validators={[VALIDATOR_REQUIRE()]}
           nextStep={nextStepHandler}
