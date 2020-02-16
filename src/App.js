@@ -40,6 +40,10 @@ function App() {
   const updateNumSteps = useCallback(numSteps => {
     setNumSteps(numSteps);
   }, []);
+
+  const reset = useCallback(() => {
+    setCompletedRate(0);
+  }, []);
   // End context for progress bar percentage
 
   // Local Storage
@@ -62,7 +66,8 @@ function App() {
         numSteps: numSteps,
         updateNumSteps: updateNumSteps,
         increase: increase,
-        decrease: decrease
+        decrease: decrease,
+        reset: reset
       }}
     >
       <Router>

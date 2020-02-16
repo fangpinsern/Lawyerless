@@ -11,24 +11,27 @@ import "./CaseType.css";
 // optionsAvailable - Array of strings that define the options
 
 function CaseType(props) {
+  const nextStepHandler = props.nextStep;
+  const prevStepHandler = props.prevStep;
+  const setForm = props.setFormType;
+  const optionsAvailable = props.optionsAvailable;
+
   // Selector for type of case
-  const [currentValue, setCurrentValue] = useState("physicalHarm");
+  const [currentValue, setCurrentValue] = useState(optionsAvailable[0]);
   const changeHandler = event => {
     setCurrentValue(event.target.value);
-    console.log(event.target.value);
+    setForm(event.target.value);
   };
   // End Selector for type of case
 
   // Next Step Handlers
-  const nextStepHandler = props.nextStep;
-  const prevStepHandler = props.prevStep;
-  const setForm = props.setFormType;
   const chosenForm = event => {
     event.preventDefault();
     setForm(currentValue);
     nextStepHandler();
   };
   // End Next Step Handlers
+
 
   return (
     <Card>
@@ -39,7 +42,7 @@ function CaseType(props) {
           value={currentValue}
           onChange={changeHandler}
         >
-          {props.optionsAvailable.map((option, i) => {
+          {optionsAvailable.map((option, i) => {
             return (
               <option value={option} key={i}>
                 {option}
@@ -52,9 +55,11 @@ function CaseType(props) {
             Previous Step
           </Button>
         )}
-        <Button type="button" inverse onClick={chosenForm}>
-          Next Step
-        </Button>
+        {nextStepHandler && (
+          <Button type="button" inverse onClick={chosenForm}>
+            Next Step
+          </Button>
+        )}
       </form>
     </Card>
   );

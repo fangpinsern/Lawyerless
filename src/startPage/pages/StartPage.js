@@ -11,7 +11,6 @@ import {
 
 // Imports for styling
 import "./StartPage.css";
-import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
 
@@ -24,38 +23,130 @@ function StartPage() {
   const previousStepHandler = () => {
     progress.decrease();
   };
+  const resetHandler = () => {
+    progress.reset();
+  };
   // End progress bar context
 
-  // Form for property damage and personal injury
-  const [committingFormState, committingFormInputHandler] = useForm(
-    {
-      numSteps: 4,
-      dateOfIncident: {
-        value: "",
-        isValid: false
+  // General Form Type
+  // inputs -> {input -> value, type, isValid}
+  // after the first selector, narrow the form type. the switch statement
+  // should by dynamic
+
+  const formStorage = {
+    "Commencing An Action": {
+      "Property Damage": {
+        dateOfIncident: {
+          value: "",
+          validators: [VALIDATOR_REQUIRE(), VALIDATOR_DATE()],
+          type: "input",
+          output:
+            "If the incident is within 6 years, you are still within the time limit to sue. Unfortunately, if it has been more than 6 years, the time limit for commencing an action for property damage has passed.",
+          placeholder: "DD/MM/YYYY",
+          label: "Date",
+          errorText: "Please enter a valid date and format (DD/MM/YYYY).",
+          isValid: false
+        },
+        valueOfClaim: {
+          value: 0,
+          validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
+          type: "input",
+          output:
+            "The value of the claim should depend on the value of the damaged property",
+          placeholder: "Value of claim",
+          label: "Value of claim",
+          errorText: "Please enter a valid value",
+          isValid: false
+        },
+        end: {
+          type: "output",
+          output: ""
+        }
       },
-      valueOfClaim: {
-        value: 0,
-        isValid: false
+      "Personal Injury": {
+        dateOfIncident: {
+          value: "",
+          validators: [VALIDATOR_REQUIRE(), VALIDATOR_DATE()],
+          type: "input",
+          output:
+            "If the incident is within 3 years, you are still within the time limit to sue. Unfortunately, if it has been more than 3 years, the time limit for commencing an action for personal injury has passed.",
+          placeholder: "DD/MM/YYYY",
+          label: "Date",
+          errorText: "Please enter a valid date and format (DD/MM/YYYY).",
+          isValid: false
+        },
+        valueOfClaim: {
+          value: 0,
+          validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
+          type: "input",
+          output:
+            "Contain information on how to calculate value of claim for personal injury",
+          placeholder: "Value of claim",
+          label: "Value of claim",
+          errorText: "Please enter a valid value",
+          isValid: false
+        }
       }
     },
-    false
-  );
+    "Responding To An Action": {
+      "Contest Claim": {},
+      "Do Not Contest Claim": {}
+    }
+  };
+
+  // Action types
+  const arrayOfAction = Object.keys(formStorage);
 
   // Check which action
-  const [actionType, setActionType] = useState("");
-
+  const [actionType, setActionType] = useState(arrayOfAction[0]);
   // End Check which action
 
-  // Check which from is being used
-  const [formType, setFormType] = useState("");
+  // Form types
+  const arrayOfForms = Object.keys(formStorage[actionType]);
 
-  if (formType === "physicalHarm") {
-    progress.updateNumSteps(committingFormState.inputs.numSteps);
-  } else {
-    progress.updateNumSteps(5);
-  }
+  // Check which from is being used
+  const [formType, setFormType] = useState(arrayOfForms[0]);
   // End Check which from is being used
+
+  // Choose which form to use from form storage
+  const chosenForm = formStorage[actionType][formType];
+
+  const [
+    committingFormState,
+    committingFormInputHandler,
+    setFormData
+  ] = useForm(chosenForm, false);
+
+  const setFormTypeWrapper = value => {
+    setFormData(formStorage[actionType][value], false);
+    setFormType(value);
+  };
+  // End choose which form to use from form storage
+
+  const arrayOfInputs = Object.keys(committingFormState.inputs);
+
+  const arrayOfInputsReturned = arrayOfInputs.map((input, i) => {
+    return (
+      <GeneralForm
+        key={i}
+        formFieldId={input}
+        validators={committingFormState.inputs[input].validators}
+        type={committingFormState.inputs[input].type}
+        output={committingFormState.inputs[input].output}
+        nextStep={nextStepHandler}
+        prevStep={previousStepHandler}
+        reset={resetHandler}
+        formData={committingFormState}
+        formDataInputHandler={committingFormInputHandler}
+        label={committingFormState.inputs[input].label}
+        errorText={committingFormState.inputs[input].errorText}
+        inputType="input"
+        placeholder={committingFormState.inputs[input].placeholder}
+      />
+    );
+  });
+
+  progress.updateNumSteps(arrayOfInputs.length + 2);
 
   // Progress of the user
   const step = progress.completed;
@@ -65,64 +156,26 @@ function StartPage() {
     case 0:
       return (
         <CaseType
+          key={0}
           nextStep={nextStepHandler}
           setFormType={setActionType}
           formtype={actionType}
-          optionsAvailable={["Commiting an action", "Responding to an action"]}
+          optionsAvailable={arrayOfAction}
         />
       );
     case 1:
       return (
         <CaseType
+          key={1}
           nextStep={nextStepHandler}
           prevStep={previousStepHandler}
-          setFormType={setFormType}
+          setFormType={setFormTypeWrapper}
           formtype={formType}
-          optionsAvailable={["Property Damage", "Personal Injury"]}
-        />
-      );
-    case 2:
-      return (
-        <GeneralForm
-          key={step}
-          formFieldId="dateOfIncident"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATE()]}
-          nextStep={nextStepHandler}
-          prevStep={previousStepHandler}
-          formData={committingFormState}
-          formDataInputHandler={committingFormInputHandler}
-          label="Date"
-          errorText="Please enter a valid date and format (DD/MM/YYYY)."
-          inputType="input"
-          placeholder="DD/MM/YYYY"
-        />
-      );
-    case 3:
-      return (
-        <GeneralForm
-          key={step}
-          formFieldId="valueOfClaim"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()]}
-          nextStep={nextStepHandler}
-          prevStep={previousStepHandler}
-          formData={committingFormState}
-          formDataInputHandler={committingFormInputHandler}
-          label="Value Of Claim"
-          errorText="Please enter a valid value."
-          inputType="input"
+          optionsAvailable={arrayOfForms}
         />
       );
     default:
-      return (
-        <React.Fragment>
-          <h1>
-            Something bad happened. Please try again {formType} {step}{" "}
-          </h1>
-          <Button type="button" inverse onClick={previousStepHandler}>
-            Previous Step
-          </Button>
-        </React.Fragment>
-      );
+      return arrayOfInputsReturned[step - 2];
   }
 }
 

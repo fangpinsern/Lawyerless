@@ -5,5 +5,6 @@ export const ProgressContext = createContext({
   numSteps: 0,
   updateNumSteps: () => {},
   increase: () => {},
-  decrease: () => {}
+  decrease: () => {},
+  reset: () => {}
 });

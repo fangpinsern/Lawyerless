@@ -19,6 +19,7 @@ const fromReducer = (state, action) => {
         inputs: {
           ...state.inputs,
           [action.inputId]: {
+            ...state.inputs[action.inputId],
             value: action.value,
             isValid: action.isValid
           }
