@@ -30,7 +30,18 @@ function GeneralForm(props) {
   const placeholder = props.placeholder;
   const type = props.type;
   const output = props.output;
+  const endFunction = props.outputFunction;
 
+  // Array of key steps
+  const arrayOfKeys = Object.keys(formData.inputs);
+  arrayOfKeys.pop();
+  console.log(arrayOfKeys);
+
+  const arrayOfValues = [];
+  for (let i = 0; i < arrayOfKeys.length; i++) {
+    arrayOfValues.push(formData.inputs[arrayOfKeys[i]].value);
+  }
+  console.log(arrayOfValues);
   const formUpdated = event => {
     event.preventDefault();
     nextStepHandler();
@@ -67,10 +78,19 @@ function GeneralForm(props) {
       )}
       {output && (
         <Card>
-          <p>{props.output}</p>
+          <p>{output}</p>
         </Card>
       )}
-      {formFieldId === "end" && <Button type="button" inverse onClick={resetHandler}>Restart Form</Button>}
+      {endFunction && (
+        <Card>
+          <p>{endFunction(...arrayOfValues)}</p>
+        </Card>
+      )}
+      {formFieldId === "end" && (
+        <Button type="button" inverse onClick={resetHandler}>
+          Restart Form
+        </Button>
+      )}
     </React.Fragment>
   );
 }

@@ -13,6 +13,7 @@ import {
 import "./StartPage.css";
 import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
+import moment from 'moment';
 
 function StartPage() {
   // Progress bar context
@@ -52,7 +53,7 @@ function StartPage() {
           validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
           type: "input",
           output:
-            "The value of the claim should depend on the value of the damaged property",
+            "Information on how to calculate value of claim for personal injury",
           placeholder: "Value of claim",
           label: "Value of claim",
           errorText: "Please enter a valid value",
@@ -60,7 +61,37 @@ function StartPage() {
         },
         end: {
           type: "output",
-          output: ""
+          output: "",
+          endFunction: (dateOfIncident, valueOfClaim) => {
+            // If dateOfIncident within 6 years, can sue - show procedures to suing
+            // Process dependent on value you are suing for
+            let output = "";
+            const sixYearAgo = moment().subtract(6, "years").format("DD/MM/YYYY");
+            const sixYearsHavePassed = moment(sixYearAgo).isAfter(dateOfIncident);
+            console.log(sixYearsHavePassed);
+            if (sixYearsHavePassed) {
+              output = "Unfortunately, there is nothing you can do already. "
+            } else {
+              const x = parseInt(valueOfClaim);
+              console.log(x);
+              switch(true) {
+                case(x < 20000):
+                  output = output + "Your Claim needs to be filed in the Small Claims Tribunal.";
+                  break;
+                case(x< 30000): 
+                  output = output + "If you and the Respondent both agree, then this claim can be filed in the Small Claims Tribunal. If not, then it needs to be filed in the Magistrate's Court."
+                  break;
+                case (x < 60000):
+                  output = output + "Your claim needs to be filed in the Magistrate's Court.";
+                  break;
+                default:
+                  output = output + "You can afford a lawyer"
+              }
+
+              return output;
+            }
+
+          }
         }
       },
       "Personal Injury": {
@@ -85,6 +116,13 @@ function StartPage() {
           label: "Value of claim",
           errorText: "Please enter a valid value",
           isValid: false
+        },
+        end: {
+          type: "output",
+          output: ""
+        },
+        endFunction: () => {
+
         }
       }
     },
@@ -123,6 +161,17 @@ function StartPage() {
   };
   // End choose which form to use from form storage
 
+  // switch statement for output
+  // const formInformation = committingFormState[actionType][formType]
+  // switch (formType){
+  //   case "Property Damage":
+  //     let output = "";
+  //     if(formInformation.dateOfIncident)
+  // }
+  // if (formType === "Property Damage") {
+  //   committingFormState[actionType][formType].end.output = ""
+  // }
+
   const arrayOfInputs = Object.keys(committingFormState.inputs);
 
   const arrayOfInputsReturned = arrayOfInputs.map((input, i) => {
@@ -133,6 +182,7 @@ function StartPage() {
         validators={committingFormState.inputs[input].validators}
         type={committingFormState.inputs[input].type}
         output={committingFormState.inputs[input].output}
+        outputFunction={committingFormState.inputs[input].endFunction} 
         nextStep={nextStepHandler}
         prevStep={previousStepHandler}
         reset={resetHandler}
