@@ -18,8 +18,8 @@ function Faq() {
     },
     {
       key: 2,
-      question: "I am stupid, what do I do?",
-      answer: "Don't be stupid"
+      question: "How do I file Small Claims Tribunal online?",
+      answer: "More information can be found at: https://www.statecourts.gov.sg/cws/SmallClaims/Pages/GeneralInformation.aspx"
     }
   ];
   return (
