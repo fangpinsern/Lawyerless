@@ -119,8 +119,8 @@ function StartPage() {
         },
         end: {
           type: "output",
-          output: ""
-        },
+          output: "",
+      
         endFunction: (dateOfIncident, valueOfClaim) => {
           // If dateOfIncident within 3 years, can sue - show procedures to suing
           // Process dependent on value you are suing for
@@ -150,7 +150,7 @@ function StartPage() {
             return output;
           }
 
-        }
+        }}
       }
     },
     "Responding To An Action": {
