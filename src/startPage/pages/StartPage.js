@@ -13,7 +13,7 @@ import {
 import "./StartPage.css";
 import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
-import moment from 'moment';
+import moment from "moment";
 
 function StartPage() {
   // Progress bar context
@@ -66,31 +66,43 @@ function StartPage() {
             // If dateOfIncident within 6 years, can sue - show procedures to suing
             // Process dependent on value you are suing for
             let output = "";
-            const sixYearAgo = moment().subtract(6, "years").format("DD/MM/YYYY");
-            const sixYearsHavePassed = moment(sixYearAgo).isAfter(dateOfIncident);
+            const sixYearAgo = moment()
+              .subtract(6, "years")
+              .format("DD/MM/YYYY");
+            const sixYearsHavePassed = moment(sixYearAgo).isAfter(
+              dateOfIncident
+            );
             console.log(sixYearAgo);
             console.log(sixYearsHavePassed);
             if (sixYearsHavePassed) {
-              output = "Unfortunately, the time limit for commencing an action for property damage has passed. "
+              output =
+                "Unfortunately, the time limit for commencing an action for property damage has passed. ";
             } else {
               const x = parseInt(valueOfClaim);
-              switch(true) {
-                case(x < 20000):
-                  output = output + "Your Claim needs to be filed in the Small Claims Tribunal.";
+              switch (true) {
+                case x < 20000:
+                  output =
+                    output +
+                    "Your Claim needs to be filed in the Small Claims Tribunal.";
                   break;
-                case (x < 30000):
-                  output = output + "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court."
+                case x < 30000:
+                  output =
+                    output +
+                    "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court.";
                   break;
-                case (x < 60000):
-                  output = output + "Your claim needs to be filed in the Magistrate's Court.";
+                case x < 60000:
+                  output =
+                    output +
+                    "Your claim needs to be filed in the Magistrate's Court.";
                   break;
                 default:
-                  output = output + "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice."
+                  output =
+                    output +
+                    "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice.";
               }
 
               return output;
             }
-
           }
         }
       },
@@ -120,37 +132,50 @@ function StartPage() {
         end: {
           type: "output",
           output: "",
-      
-        endFunction: (dateOfIncident, valueOfClaim) => {
-          // If dateOfIncident within 3 years, can sue - show procedures to suing
-          // Process dependent on value you are suing for
-          let output = "";
-          const threeYearAgo = moment().subtract(3, "years").format("DD/MM/YYYY");
-          const threeYearsHavePassed = moment(threeYearAgo).isAfter(dateOfIncident);
-          console.log(threeYearsHavePassed);
-          if (threeYearsHavePassed) {
-            output = "Unfortunately, the time limit for commencing an action for personal injury has passed. "
-          } else {
-            const x = parseInt(valueOfClaim);
-            console.log(x);
-            switch (true) {
-              case (x < 20000):
-                output = output + "Your Claim needs to be filed in the Small Claims Tribunal.";
-                break;
-              case (x < 30000):
-                output = output + "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court."
-                break;
-              case (x < 60000):
-                output = output + "Your claim needs to be filed in the Magistrate's Court.";
-                break;
-              default:
-                output = output + "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice."
+
+          endFunction: (dateOfIncident, valueOfClaim) => {
+            // If dateOfIncident within 3 years, can sue - show procedures to suing
+            // Process dependent on value you are suing for
+            let output = "";
+            const threeYearAgo = moment()
+              .subtract(3, "years")
+              .format("DD/MM/YYYY");
+            const threeYearsHavePassed = moment(threeYearAgo).isAfter(
+              dateOfIncident
+            );
+            console.log(threeYearsHavePassed);
+            if (threeYearsHavePassed) {
+              output =
+                "Unfortunately, the time limit for commencing an action for personal injury has passed. ";
+            } else {
+              const x = parseInt(valueOfClaim);
+              console.log(x);
+              switch (true) {
+                case x < 20000:
+                  output =
+                    output +
+                    "Your Claim needs to be filed in the Small Claims Tribunal.";
+                  break;
+                case x < 30000:
+                  output =
+                    output +
+                    "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court.";
+                  break;
+                case x < 60000:
+                  output =
+                    output +
+                    "Your claim needs to be filed in the Magistrate's Court.";
+                  break;
+                default:
+                  output =
+                    output +
+                    "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice.";
+              }
+
+              return output;
             }
-
-            return output;
           }
-
-        }}
+        }
       }
     },
     "Responding To An Action": {
