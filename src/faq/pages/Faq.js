@@ -20,7 +20,7 @@ function Faq() {
     {
       key: 2,
       question: "How do I file Small Claims Tribunal online?",
-      answer: "More information can be found at <a href = \"https://www.statecourts.gov.sg/cws/SmallClaims/Pages/GeneralInformation.aspx\" target = \"_blank\"> Small Claims Tribunal </a>"
+      answer: <p>More information can be found at <a href = "https://www.statecourts.gov.sg/cws/SmallClaims/Pages/GeneralInformation.aspx"> Small Claims Tribunal </a></p>
     }
   ];
   return (
