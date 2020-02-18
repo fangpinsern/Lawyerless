@@ -177,8 +177,18 @@ function StartPage() {
       }
     },
     "Responding To An Action": {
-      "Contest Claim": {},
-      "Do Not Contest Claim": {}
+      "Contest Claim": {
+        end: {
+          type: "output",
+          output: "Streamed line step by step process"
+        }
+      },
+      "Do Not Contest Claim": {
+        end: {
+          type: "output",
+          output: "Follow instructions given in the summon."
+        }
+      }
     }
   };
 
@@ -210,17 +220,6 @@ function StartPage() {
     setFormType(value);
   };
   // End choose which form to use from form storage
-
-  // switch statement for output
-  // const formInformation = committingFormState[actionType][formType]
-  // switch (formType){
-  //   case "Property Damage":
-  //     let output = "";
-  //     if(formInformation.dateOfIncident)
-  // }
-  // if (formType === "Property Damage") {
-  //   committingFormState[actionType][formType].end.output = ""
-  // }
 
   const arrayOfInputs = Object.keys(committingFormState.inputs);
 
