@@ -100,7 +100,7 @@ export default function Album() {
                             color="textPrimary"
                             gutterBottom
                         >
-                            Lawyerless
+                            Lawyerlike
             </Typography>
                         <Typography
                             variant="h5"
