@@ -60,6 +60,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const cards = [1, 2, 3, 4, 5, 6];
+const cardsImages = ["/images/taps.jpg",
+    "/images/lawyerless.jpg",
+    "/images/siqi.jpg",
+    "/images/km.jpg",
+    "/images/pins.jpg",
+    "/images/ming.jpg"
+];
+
+/*
 const cardsImages = ["https://yangming.s3.amazonaws.com/taps.jpg",
     "https://yangming.s3.amazonaws.com/lawyerless.jpg",
     "https://yangming.s3.amazonaws.com/siqi.jpg",
@@ -67,6 +76,7 @@ const cardsImages = ["https://yangming.s3.amazonaws.com/taps.jpg",
     "https://yangming.s3.amazonaws.com/pins.jpg",
     "https://yangming.s3.amazonaws.com/ming.jpg"
 ];
+*/
 const cardsNames = ["Tapasya Singh",
     "",
     "Yang Siqi",
