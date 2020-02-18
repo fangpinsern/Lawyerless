@@ -15,6 +15,7 @@ import Input from "../../shared/components/FormElements/Input";
 // label - label
 // errorText - text appears when validators fail
 // placeholder - placeholder when there is no input from the user
+// outputFunction - The function the gives the output at the end
 
 function GeneralForm(props) {
   const formData = props.formData;
@@ -35,8 +36,7 @@ function GeneralForm(props) {
   // Array of key steps
   const arrayOfKeys = Object.keys(formData.inputs);
   arrayOfKeys.pop();
-  console.log(arrayOfKeys);
-
+  
   const arrayOfValues = [];
   for (let i = 0; i < arrayOfKeys.length; i++) {
     arrayOfValues.push(formData.inputs[arrayOfKeys[i]].value);

@@ -68,12 +68,12 @@ function StartPage() {
             let output = "";
             const sixYearAgo = moment().subtract(6, "years").format("DD/MM/YYYY");
             const sixYearsHavePassed = moment(sixYearAgo).isAfter(dateOfIncident);
+            console.log(sixYearAgo);
             console.log(sixYearsHavePassed);
             if (sixYearsHavePassed) {
               output = "Unfortunately, there is nothing you can do already. "
             } else {
               const x = parseInt(valueOfClaim);
-              console.log(x);
               switch(true) {
                 case(x < 20000):
                   output = output + "Your Claim needs to be filed in the Small Claims Tribunal.";
@@ -196,7 +196,7 @@ function StartPage() {
     );
   });
 
-  progress.updateNumSteps(arrayOfInputs.length + 2);
+  progress.updateNumSteps(arrayOfInputs.length + 1);
 
   // Progress of the user
   const step = progress.completed;
