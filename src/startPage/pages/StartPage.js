@@ -70,22 +70,22 @@ function StartPage() {
             const sixYearsHavePassed = moment(sixYearAgo).isAfter(dateOfIncident);
             console.log(sixYearsHavePassed);
             if (sixYearsHavePassed) {
-              output = "Unfortunately, there is nothing you can do already. "
+              output = "Unfortunately, the time limit for commencing an action for property damage has passed. "
             } else {
               const x = parseInt(valueOfClaim);
               console.log(x);
-              switch(true) {
-                case(x < 20000):
+              switch (true) {
+                case (x < 20000):
                   output = output + "Your Claim needs to be filed in the Small Claims Tribunal.";
                   break;
-                case(x< 30000): 
-                  output = output + "If you and the Respondent both agree, then this claim can be filed in the Small Claims Tribunal. If not, then it needs to be filed in the Magistrate's Court."
+                case (x < 30000):
+                  output = output + "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court."
                   break;
                 case (x < 60000):
                   output = output + "Your claim needs to be filed in the Magistrate's Court.";
                   break;
                 default:
-                  output = output + "You can afford a lawyer"
+                  output = output + "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice."
               }
 
               return output;
@@ -121,7 +121,34 @@ function StartPage() {
           type: "output",
           output: ""
         },
-        endFunction: () => {
+        endFunction: (dateOfIncident, valueOfClaim) => {
+          // If dateOfIncident within 3 years, can sue - show procedures to suing
+          // Process dependent on value you are suing for
+          let output = "";
+          const threeYearAgo = moment().subtract(3, "years").format("DD/MM/YYYY");
+          const threeYearsHavePassed = moment(threeYearAgo).isAfter(dateOfIncident);
+          console.log(threeYearsHavePassed);
+          if (threeYearsHavePassed) {
+            output = "Unfortunately, the time limit for commencing an action for personal injury has passed. "
+          } else {
+            const x = parseInt(valueOfClaim);
+            console.log(x);
+            switch (true) {
+              case (x < 20000):
+                output = output + "Your Claim needs to be filed in the Small Claims Tribunal.";
+                break;
+              case (x < 30000):
+                output = output + "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court."
+                break;
+              case (x < 60000):
+                output = output + "Your claim needs to be filed in the Magistrate's Court.";
+                break;
+              default:
+                output = output + "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice."
+            }
+
+            return output;
+          }
 
         }
       }
@@ -182,7 +209,7 @@ function StartPage() {
         validators={committingFormState.inputs[input].validators}
         type={committingFormState.inputs[input].type}
         output={committingFormState.inputs[input].output}
-        outputFunction={committingFormState.inputs[input].endFunction} 
+        outputFunction={committingFormState.inputs[input].endFunction}
         nextStep={nextStepHandler}
         prevStep={previousStepHandler}
         reset={resetHandler}
