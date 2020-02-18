@@ -36,12 +36,12 @@ function GeneralForm(props) {
   // Array of key steps
   const arrayOfKeys = Object.keys(formData.inputs);
   arrayOfKeys.pop();
-  
+
   const arrayOfValues = [];
   for (let i = 0; i < arrayOfKeys.length; i++) {
     arrayOfValues.push(formData.inputs[arrayOfKeys[i]].value);
   }
-  console.log(arrayOfValues);
+
   const formUpdated = event => {
     event.preventDefault();
     nextStepHandler();
@@ -83,7 +83,7 @@ function GeneralForm(props) {
       )}
       {endFunction && (
         <Card>
-          <p>{endFunction(...arrayOfValues)}</p>
+          {endFunction(...arrayOfValues)}
         </Card>
       )}
       {formFieldId === "end" && (

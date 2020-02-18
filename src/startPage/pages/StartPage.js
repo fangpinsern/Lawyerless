@@ -14,6 +14,7 @@ import "./StartPage.css";
 import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
 import moment from "moment";
+import MagistratesCourts from "../components/MagistratesCourts";
 
 function StartPage() {
   // Progress bar context
@@ -91,9 +92,7 @@ function StartPage() {
                     "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court.";
                   break;
                 case x < 60000:
-                  output =
-                    output +
-                    "Your claim needs to be filed in the Magistrate's Court.";
+                  output = <MagistratesCourts />;
                   break;
                 default:
                   output =
