@@ -44,7 +44,7 @@ function CaseType(props) {
         >
           {optionsAvailable.map((option, i) => {
             return (
-              <option value={option} key={i}>
+              <option className="dropdown_option" value={option} key={i}>
                 {option}
               </option>
             );
