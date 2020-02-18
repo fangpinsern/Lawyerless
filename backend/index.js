@@ -1,4 +1,6 @@
 const express = require("express");
+const path = require('path');
+const port = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 const cors = require("cors");
@@ -6,16 +8,24 @@ const creds = require('./config/config');
 
 const app = express();
 
-const port = 3001;
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/ping', function (req, res) {
+ return res.send('pong');
+});
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.listen(port, () => {
-  console.log("We are live on port 3001");
+  console.log("We are live on port " + port);
 });
 
 app.get("/", (req, res, next) => {
