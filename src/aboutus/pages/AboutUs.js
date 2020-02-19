@@ -60,12 +60,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const cards = [1, 2, 3, 4, 5, 6];
-const cardsImages = ["/images/taps.jpg",
-    "/images/lawyerless.jpg",
-    "/images/siqi.jpg",
-    "/images/km.jpg",
-    "/images/pins.jpg",
-    "/images/ming.jpg"
+const cardsImages = ["./src/images/taps.jpg",
+    "./src/images/lawyerless.jpg",
+    "./src/images/siqi.jpg",
+    "./src/images/km.jpg",
+    "./src/images/pins.jpg",
+    "./src/images/ming.jpg"
 ];
 
 /*
