@@ -30,11 +30,6 @@ function StartPage() {
   };
   // End progress bar context
 
-  // General Form Type
-  // inputs -> {input -> value, type, isValid}
-  // after the first selector, narrow the form type. the switch statement
-  // should by dynamic
-
   const formStorage = {
     "Commencing An Action": {
       "Property Damage": {
@@ -180,6 +175,7 @@ function StartPage() {
         end: {
           type: "output",
           output: "Streamed line step by step process",
+          endFunction: () => {},
           isValid: true
         }
       },
@@ -187,6 +183,7 @@ function StartPage() {
         end: {
           type: "output",
           output: "Follow instructions given in the summon.",
+          endFunction: () => {},
           isValid: true
         }
       }
@@ -252,8 +249,6 @@ function StartPage() {
     );
     // console.log("i am here")
   });
-
-  console.log(committingFormState);
   // End Local Storage
 
   const arrayOfInputs = Object.keys(committingFormState.inputs);
