@@ -4,7 +4,7 @@ const port = process.env.PORT || 3001;
 const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 const cors = require("cors");
-const creds = require('./config/config');
+const creds = require('../config/config');
 
 const app = express();
 

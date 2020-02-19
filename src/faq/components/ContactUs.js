@@ -43,7 +43,7 @@ function ContactUs() {
 
     axios({
       method: "POST",
-      url: "http://localhost:3001/send",
+      url: "http://localhost:8080/send",
       data: {
         name: name,
         email: email,

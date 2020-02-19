@@ -3,8 +3,6 @@ import Card from "../../shared/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hooks";
 
-//
-
 function MagistratesCourts(props) {
   const MagForm = {
     "Filing of the Summons": {
