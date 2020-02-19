@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // Imports from local components
 import { ProgressContext } from "../../shared/context/progressBar-context";
@@ -101,7 +101,8 @@ function StartPage() {
               }
             }
             return output;
-          }
+          },
+          isValid: true
         }
       },
       "Personal Injury": {
@@ -160,9 +161,7 @@ function StartPage() {
                     "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court.";
                   break;
                 case x < 60000:
-                  output =
-                    output +
-                    "Your claim needs to be filed in the Magistrate's Court.";
+                  output = <MagistratesCourts />;
                   break;
                 default:
                   output =
@@ -171,7 +170,8 @@ function StartPage() {
               }
             }
             return output;
-          }
+          },
+          isValid: true
         }
       }
     },
@@ -179,13 +179,15 @@ function StartPage() {
       "Contest Claim": {
         end: {
           type: "output",
-          output: "Streamed line step by step process"
+          output: "Streamed line step by step process",
+          isValid: true
         }
       },
       "Do Not Contest Claim": {
         end: {
           type: "output",
-          output: "Follow instructions given in the summon."
+          output: "Follow instructions given in the summon.",
+          isValid: true
         }
       }
     }
@@ -219,6 +221,40 @@ function StartPage() {
     setFormType(value);
   };
   // End choose which form to use from form storage
+
+  // Local Storage
+  useEffect(() => {
+    const data = localStorage.getItem("committing-form-inputs");
+    const isValid = localStorage.getItem("committing-form-isValid") === "true";
+    const compressedFunc = localStorage.getItem(
+      "committing-form-inputs-endFunction"
+    );
+
+    if (data) {
+      const parseData = JSON.parse(data);
+      parseData.end.endFunction = eval("(" + compressedFunc + ")");
+      setFormData(parseData, isValid);
+    }
+  }, [setFormData]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "committing-form-inputs",
+      JSON.stringify(committingFormState.inputs)
+    );
+    localStorage.setItem(
+      "committing-form-isValid",
+      JSON.stringify(committingFormState.isValid)
+    );
+    localStorage.setItem(
+      "committing-form-inputs-endFunction",
+      committingFormState.inputs.end.endFunction.toString()
+    );
+    // console.log("i am here")
+  });
+
+  console.log(committingFormState);
+  // End Local Storage
 
   const arrayOfInputs = Object.keys(committingFormState.inputs);
 
