@@ -27,6 +27,7 @@ function StartPage() {
   };
   const resetHandler = () => {
     progress.reset();
+    localStorage.removeItem("magForm")
   };
   // End progress bar context
 
