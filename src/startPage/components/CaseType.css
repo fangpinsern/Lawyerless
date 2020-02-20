@@ -14,8 +14,8 @@
 }
 
 .contact-form option {
-    background-color: black;
-    color: whitesmoke;
+    background-color: lightgrey;
+    color: rgb(49, 49, 49);
     border-radius: 0.15rem;
 }
 

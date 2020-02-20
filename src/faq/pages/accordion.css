@@ -4,13 +4,16 @@
 * ----------------------------------------------
 **/
 .accordion {
-    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 2px;
+    width: 60%;
+    left: 20%;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 1.5rem 0rem;
 }
 
-.accordion__item + .accordion__item {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
+/* .accordion__item + .accordion__item {
+} */
 
 .accordion__button {
     background-color: #f4f4f4;
