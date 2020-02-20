@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1rem;
 }
 
 .nav-links li {
@@ -40,6 +41,7 @@
   padding-bottom: 0.4rem;
   text-decoration: solid;
   border-radius: 0.15rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links button {
@@ -81,9 +83,9 @@
     background: transparent;
   }
   
-  .nav-links button:hover,
+  /* .nav-links button:hover,
   .nav-links button:active {
     background: #f8df00;
     color: #292929;
-  }
+  } */
 }

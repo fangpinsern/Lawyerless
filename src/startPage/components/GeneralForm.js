@@ -51,7 +51,7 @@ function GeneralForm(props) {
     <React.Fragment>
       {type === "input" && (
         <Card>
-          <form className="contact-form">
+          <form className="contact-form" id="contact-dropdown-form">
             <Input
               id={formFieldId}
               element={inputType}
