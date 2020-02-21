@@ -60,15 +60,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const cards = [1, 2, 3, 4, 5, 6];
-const cardsImages = ["./src/images/taps.jpg",
-    "./src/images/lawyerless.jpg",
-    "./src/images/siqi.jpg",
-    "./src/images/km.jpg",
-    "./src/images/pins.jpg",
-    "./src/images/ming.jpg"
-];
+// const cardsImages = ["./src/images/taps.jpg",
+//     "./src/images/lawyerless.jpg",
+//     "./src/images/siqi.jpg",
+//     "./src/images/km.jpg",
+//     "./src/images/pins.jpg",
+//     "./src/images/ming.jpg"
+// ];
 
-/*
+
 const cardsImages = ["https://yangming.s3.amazonaws.com/taps.jpg",
     "https://yangming.s3.amazonaws.com/lawyerless.jpg",
     "https://yangming.s3.amazonaws.com/siqi.jpg",
@@ -76,7 +76,7 @@ const cardsImages = ["https://yangming.s3.amazonaws.com/taps.jpg",
     "https://yangming.s3.amazonaws.com/pins.jpg",
     "https://yangming.s3.amazonaws.com/ming.jpg"
 ];
-*/
+
 const cardsNames = ["Tapasya Singh",
     "",
     "Yang Siqi",
@@ -94,8 +94,8 @@ export default function Album() {
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
                         <Typography
-                            component="h1"
-                            variant="h2"
+                            component="h3"
+                            variant="h3"
                             align="center"
                             color="textPrimary"
                             gutterBottom
@@ -103,7 +103,7 @@ export default function Album() {
                             Lawyerlike
             </Typography>
                         <Typography
-                            variant="h5"
+                            variant="h6"
                             align="center"
                             color="textSecondary"
                             paragraph
@@ -124,7 +124,7 @@ export default function Album() {
                                         title="Image title"
                                     />
                                     <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" align="center" component="h2">
+                                        <Typography gutterBottom variant="h6" align="center" component="h2">
                                             {cardsNames[i]}
                                         </Typography>
                                     </CardContent>
@@ -135,7 +135,7 @@ export default function Album() {
                 </Container>
             </main>
             {/* Footer */}
-            <footer className={classes.footer}>
+            {/* <footer className={classes.footer}>
                 <Typography variant="h6" align="center" gutterBottom>
                     Footer
         </Typography>
@@ -148,7 +148,7 @@ export default function Album() {
                     Something here to give the footer a purpose!
         </Typography>
                 <Copyright />
-            </footer>
+            </footer> */}
             {/* End footer */}
         </React.Fragment>
     );
