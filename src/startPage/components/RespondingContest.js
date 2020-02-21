@@ -17,16 +17,7 @@ function RespondingContest() {
         "After you file a memorandum of appearance, you are to serve a defense within the time limit, or judgement in default of appearance may still apply",
       isValid: false
     },
-    "Did you miss your deadline to file a memorandum of appearance?": {
-      value: "",
-      output: "",
-      isValid: false
-    },
-    "Did you miss your deadline to file a defense/counterclaim?": {
-      value: "",
-      output: "",
-      isValid: false
-    },
+
     "Has the plaintiff replied to your defence?": {
       value: "",
       output: "",
@@ -35,6 +26,7 @@ function RespondingContest() {
   };
 
   const arrKeys = Object.keys(respondingForm);
+  const numSteps = arrKeys.length;
 
   const [
     respondingFormState,
@@ -46,6 +38,7 @@ function RespondingContest() {
 
   const step1done = () => {
     respondingformInputHandler(arrKeys[0], "done", true);
+    setSkipToSix(false);
   };
 
   const skipToSix = () => {
@@ -54,7 +47,30 @@ function RespondingContest() {
 
   const step2done = () => {
     respondingformInputHandler(arrKeys[1], "done", true);
+    setSkipToSix(false);
   };
+
+  const step3done = () => {
+    respondingformInputHandler(arrKeys[2], "done", true);
+    setSkipToSix(false);
+  };
+
+  const step4yes = () => {
+    respondingformInputHandler(arrKeys[2], "yes", true);
+    setSkipToSix(false);
+  };
+
+  const step4no = () => {
+    respondingformInputHandler(arrKeys[2], "no", true);
+    setSkipToSix(false);
+  };
+
+  const restart = () => {
+    for (let i = 0; i < numSteps; i++) {
+      respondingformInputHandler(arrKeys[i], "", false);
+    }
+    setSkipToSix(false);
+  }
 
   const inputValues = respondingFormState.inputs;
   return (
@@ -81,15 +97,40 @@ function RespondingContest() {
           </Button>
         </Card>
       )}
-      {/* {inputValues[arrKeys[1]].isValid && (
+
+      {inputValues[arrKeys[1]].isValid && (
         <Card>
-          <h3>{arrKeys[2]}</h3>
-          <p>{inputValues[arrKeys[2]].output}</p>
-          <Button type="button" inverse onClick={step3done}>
+          <h3>Has the plaintiff replied to your Defence?</h3>
+          <Button type="button" inverse onClick={step4yes}>
             Yes
           </Button>
+          <Button type="button" inverse onClick={step4no}>
+            No
+          </Button>
         </Card>
-      )} */}
+      )}
+
+      {inputValues[arrKeys[2]].value === "yes" && (
+        <Card>
+          <p>
+            Pleadings will be deemed closed 14 days after service of the reply
+            or service of the defence to the counterclaim by the plaintiff to
+            you.
+          </p>
+          <Button type="button" inverse onClick={restart}>
+            Restart
+          </Button>
+        </Card>
+      )}
+
+      {inputValues[arrKeys[2]].value === "no" && (
+        <Card>
+          <p>The pleadings will close 14 days after the defence is served.</p>
+          <Button type="button" inverse onClick={restart}>
+            Restart
+          </Button>
+        </Card>
+      )}
 
       {skipToSixState && (
         <Card>
@@ -115,6 +156,9 @@ function RespondingContest() {
             Source:
             https://www.statecourts.gov.sg/cws/SmallClaims/Pages/Setting-aside-an-Order-made-in-your-absence.aspx
           </p>
+          <Button type="button" inverse onClick={restart}>
+            Restart
+          </Button>
         </Card>
       )}
     </React.Fragment>
