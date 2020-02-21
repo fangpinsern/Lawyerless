@@ -20,16 +20,16 @@ function ActualForm1(props) {
 
   return (
     <Card>
-      <form className="contact-form">
+      <form className="contact-form" id="contact-dropdown-form">
         <Input
-        id="dateOfIncident"
-        element="input"
-        type="text"
-        label="Date"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid date."
-        onInput={formDataInputHandler}
-      />
+          id="dateOfIncident"
+          element="input"
+          type="text"
+          label="Date"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid date."
+          onInput={formDataInputHandler}
+        />
         <Button type="button" inverse onClick={dateUpdated} disabled={!formData.inputs.dateOfIncident.isValid}>
           Next Step
         </Button>

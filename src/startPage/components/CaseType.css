@@ -1,13 +1,26 @@
 .contact-form select{
     display: block;
-    margin: 0.3rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
-    padding: 0.25rem 0.35rem;
+    border: none;
+    padding: 0.35rem;
+}
+
+#case-types {
+    margin: 1.5rem 0rem;
     border-radius: 0.15rem;
 }
 
-.dropdown_option:hover,
-.dropdown_option.hover {
-    background-color: red;
+#contact-dropdown-form {
+    box-shadow: none;
+}
+
+.contact-form option {
+    background-color: lightgrey;
+    color: rgb(49, 49, 49);
+    border-radius: 0.15rem;
+}
+
+.contact-form option:hover,
+.contact-form option.hover {
+    color: red;
+    background-color: black;
 }

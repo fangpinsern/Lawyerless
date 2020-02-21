@@ -35,7 +35,7 @@ function CaseType(props) {
 
   return (
     <Card>
-      <form className="contact-form">
+      <form className="contact-form" id="contact-dropdown-form">
         <select
           id="case-types"
           name="typelist"
@@ -61,7 +61,7 @@ function CaseType(props) {
           </Button>
         )}
       </form>
-    </Card>
+    </Card >
   );
 }
 
