@@ -13,9 +13,9 @@ import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import Typography from '@material-ui/core/Typography';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
+import post1 from './blog1.md';
+import post2 from './blog2.md';
+import post3 from './blog3.md';
 
 const useStyles = makeStyles(theme => ({
     mainGrid: {

@@ -15,6 +15,7 @@ import { useForm } from "../../shared/hooks/form-hooks";
 import GeneralForm from "../components/GeneralForm";
 import moment from "moment";
 import MagistratesCourts from "../components/MagistratesCourts";
+import RespondingContest from "../components/RespondingContest";
 
 function StartPage() {
   // Progress bar context
@@ -176,7 +177,9 @@ function StartPage() {
         end: {
           type: "output",
           output: "Streamed line step by step process",
-          endFunction: () => {},
+          endFunction: () => {
+            return <RespondingContest />
+          },
           isValid: true
         }
       },
