@@ -74,7 +74,6 @@ function Faq() {
                     alt="This is the faq page"
                 />
             </div>
-            <Card>
                 <Accordion allowZeroExpanded="true">
                     {faqs.map(faq => {
                         return <Questions key={faq.key} faq={faq} />;
@@ -82,7 +81,6 @@ function Faq() {
                 </Accordion>
                 <br />
                 <ContactUs />
-            </Card>
         </React.Fragment>
     );
 }

@@ -29,12 +29,6 @@ function MagistratesCourts(props) {
     }
   };
 
-  const faq = {
-    question: "Reply to the defendant",
-    answer:
-      "The reply to the defendant is your optional opportunity to respondto any points made in the defence which were not dealt with in youroriginal claim."
-  };
-
   // Whether next appears depends on previous value
   const arrKeys = Object.keys(MagForm);
   const numSteps = arrKeys.length;
@@ -172,7 +166,7 @@ function MagistratesCourts(props) {
           </Button>
         </Card>
       )}
-      {magFormState.inputs[arrKeys[3]].isValid && (
+      {magFormState.inputs[arrKeys[3]].isValid && !shortCircuit && (
         <Card>
           <h3>Replying to the defendant and defence to the counterclaim</h3>
           <Accordion allowZeroExpanded="true">
