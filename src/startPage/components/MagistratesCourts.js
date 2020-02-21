@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Accordion } from "react-accessible-accordion";
 import Card from "../../shared/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hooks";
+import Questions from "../../faq/components/Questions";
 
 function MagistratesCourts(props) {
   const MagForm = {
@@ -13,88 +15,84 @@ function MagistratesCourts(props) {
       value: "",
       isValid: false
     },
-    "Has the respondent filed the Memorandum of Appearance within 8 days of receiving the Writ?": {
+    "Has the defendant filed the Memorandum of Appearance within 8 days of receiving the Writ?": {
       value: "",
       isValid: false
     },
-    "Has the respondent filed a Defence/Counterclaim?": {
+    "Has the defendant filed and served a defence upon you within 22 days of receiving the Writ?": {
+      value: "",
+      isValid: false
+    },
+    "Replying to the defendant and defence to the counterclaim": {
       value: "",
       isValid: false
     }
+  };
+
+  const faq = {
+    question: "Reply to the defendant",
+    answer:
+      "The reply to the defendant is your optional opportunity to respondto any points made in the defence which were not dealt with in youroriginal claim."
   };
 
   // Whether next appears depends on previous value
   const arrKeys = Object.keys(MagForm);
   const numSteps = arrKeys.length;
 
-  const [magFormState, magFormInputHandler, setFormData] = useForm(MagForm, false);
+  const [magFormState, magFormInputHandler, setFormData] = useForm(
+    MagForm,
+    false
+  );
 
   const [shortCircuit, setShortCircuit] = useState(false);
-  
+
   useEffect(() => {
     const data = localStorage.getItem("magForm");
-    if(data) {
+    if (data) {
       const parseData = JSON.parse(data);
       setFormData(parseData.inputs, parseData.isValid);
     }
-  }, [setFormData])
+  }, [setFormData]);
 
   useEffect(() => {
     localStorage.setItem("magForm", JSON.stringify(magFormState));
-    console.log("i am here");
-  })
+  });
 
   // Button functions
   const step1done = () => {
-    magFormInputHandler("Filing of the Summons", "filled", true);
+    magFormInputHandler(arrKeys[0], "filled", true);
   };
 
   const step2done = () => {
-    magFormInputHandler("Servicing of the Writ", "filled", true);
+    magFormInputHandler(arrKeys[1], "filled", true);
   };
 
   const step3done = () => {
-    magFormInputHandler(
-      "Has the respondent filed the Memorandum of Appearance within 8 days of receiving the Writ?",
-      0,
-      true
-    );
+    magFormInputHandler(arrKeys[2], 0, true);
     setShortCircuit(false);
   };
 
   const step3short = () => {
-    magFormInputHandler(
-      "Has the respondent filed the Memorandum of Appearance within 8 days of receiving the Writ?",
-      1,
-      false
-    );
+    magFormInputHandler(arrKeys[2], 1, false);
     setShortCircuit(true);
   };
 
   const step4done = () => {
-    magFormInputHandler(
-      "Has the respondent filed a Defence/Counterclaim?",
-      0,
-      true
-    );
+    magFormInputHandler(arrKeys[3], 0, true);
     setShortCircuit(false);
   };
 
   const step4short = () => {
-    magFormInputHandler(
-      "Has the respondent filed a Defence/Counterclaim?",
-      1,
-      false
-    );
+    magFormInputHandler(arrKeys[4], 1, false);
     setShortCircuit(true);
   };
 
   const reset = () => {
-    for(let i = 0; i < numSteps; i++) {
-        magFormInputHandler(arrKeys[i], "", false);
+    for (let i = 0; i < numSteps; i++) {
+      magFormInputHandler(arrKeys[i], "", false);
     }
     setShortCircuit(false);
-  }
+  };
 
   // End button function
 
@@ -103,11 +101,24 @@ function MagistratesCourts(props) {
       <Card>
         <h3>{[arrKeys[0]]}</h3>
         <p>
-          Writ of Summons (dispute on the facts) → link to Writ: A writ must be
-          in Form 2 of the Rules of Court, which can be downloaded:
-          https://www.supremecourt.gov.sg/docs/default-source/default-document-library/civil-proceedings/writ-of-summons.pdf
-          | Originating Summons (disputes on the law) → suggest they get a
-          lawyer
+          a. To begin the process, you have to file and serve a Writ of Summons,
+          along with a statement of claim.
+        </p>
+        <p>
+          b. A writ of summons commences the action, and must be in Form 2 of
+          the Rules of Court. An empty copy is available at this link:
+          https://www.supremecourt.gov.sg/docs/default-source/default-document-library/civil-proceedings/writ-of-summons.pdf.
+          Do fill in the blank spaces with the relevant details.
+        </p>
+        <p>
+          c. A statement of claim sets out the relevant facts establishing your
+          claim. This may be endorsed on the writ and served together with it.
+        </p>
+        <p>
+          d. Filing a document means that you are submitting it to the Court.
+          Filings have to be done at the CrimsonLogic Service Bureau: link to
+          gmaps location (133 New Bridge Road #19-01/02, Chinatown Point
+          S(059413))
         </p>
         <Button type="button" inverse onClick={step1done}>
           Done
@@ -116,7 +127,20 @@ function MagistratesCourts(props) {
       {magFormState.inputs[arrKeys[0]].isValid && (
         <Card>
           <h3>{[arrKeys[1]]}</h3>
-          <p>Note the date which the defendant receives the Writ</p>
+          <p>
+            You must serve the Writ of Summons and statement of claim to the
+            defendant through a process server.
+          </p>
+          <p>
+            You may make an appointment for service of the Writ by filling up a
+            "Request for Process Server" form at the Central Registry (State
+            Courts Towers on Level 2). If the Defendant is an individual, the
+            Writ must be directly served on him/her.
+          </p>
+          <p>
+            Note down the date which the defendant receives the Writ as it will
+            impact the following steps.
+          </p>
           <Button type="button" inverse onClick={step2done}>
             Done
           </Button>
@@ -125,6 +149,10 @@ function MagistratesCourts(props) {
       {magFormState.inputs[arrKeys[1]].isValid && (
         <Card>
           <h3>{[arrKeys[2]]}</h3>
+          <p>
+            A Memorandum of Appearance states the defendant’s intention to
+            appear in court and challenge the claim.
+          </p>
           <Button type="button" inverse onClick={step3done}>
             Yes
           </Button>
@@ -144,9 +172,51 @@ function MagistratesCourts(props) {
           </Button>
         </Card>
       )}
+      {magFormState.inputs[arrKeys[3]].isValid && (
+        <Card>
+          <h3>Replying to the defendant and defence to the counterclaim</h3>
+          <Accordion allowZeroExpanded="true">
+            <Questions
+              faq={{
+                question: "Reply to the defendant",
+                answer:
+                  "The reply to the defendant is your optional opportunity to respondto any points made in the defence which were not dealt with in youroriginal claim."
+              }}
+            />
+            <Questions
+              faq={{
+                question: "Defence to the counterclaim",
+                answer:
+                  "The defence to the counterclaim is your opportunity to respond to the counterclaim made by the defendant, wherein he/she alleges that they have a claim, or are entitled to relief, against you."
+              }}
+            />
+          </Accordion>
+          <p>
+            You can choose to file and serve a Reply and Defence to
+            Counterclaim, or just a Defence to Counterclaim if there is no
+            Reply. This must be done within 14 days of you being served with the
+            defence and counterclaim by the defendant.
+          </p>
+          <p>
+            Pleadings will be deemed closed 14 days after service of the reply
+            or service of the defence to the counterclaim.
+          </p>
+          <p>
+            If you choose not to reply and/or file a defence to the
+            counterclaim, the pleadings will close 14 days after the defence is
+            served.
+          </p>
+          <Button type="button" inverse onClick={reset}>
+            Restart
+          </Button>
+        </Card>
+      )}
       {shortCircuit && (
         <Card>
-          <h3>You may apply to the Court for judgement to be entered against the defendent</h3>
+          <h3>
+            You may apply to the Court for judgement to be entered against the
+            defendent
+          </h3>
           <Button type="button" inverse onClick={reset}>
             Restart
           </Button>
