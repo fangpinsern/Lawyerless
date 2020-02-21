@@ -30,10 +30,10 @@ function MagistratesCourts(props) {
   const [magFormState, magFormInputHandler, setFormData] = useForm(MagForm, false);
 
   const [shortCircuit, setShortCircuit] = useState(false);
-  
+
   useEffect(() => {
     const data = localStorage.getItem("magForm");
-    if(data) {
+    if (data) {
       const parseData = JSON.parse(data);
       setFormData(parseData.inputs, parseData.isValid);
     }
@@ -90,8 +90,8 @@ function MagistratesCourts(props) {
   };
 
   const reset = () => {
-    for(let i = 0; i < numSteps; i++) {
-        magFormInputHandler(arrKeys[i], "", false);
+    for (let i = 0; i < numSteps; i++) {
+      magFormInputHandler(arrKeys[i], "", false);
     }
     setShortCircuit(false);
   }
