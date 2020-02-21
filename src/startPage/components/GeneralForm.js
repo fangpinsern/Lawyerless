@@ -51,7 +51,7 @@ function GeneralForm(props) {
     <React.Fragment>
       {type === "input" && (
         <Card>
-          <form className="contact-form">
+          <form className="contact-form" id="contact-dropdown-form">
             <Input
               id={formFieldId}
               element={inputType}
@@ -82,7 +82,7 @@ function GeneralForm(props) {
         </Card>
       )}
       {endFunction && (
-        <Card>
+        <Card className="start-final">
           {endFunction(...arrayOfValues)}
         </Card>
       )}

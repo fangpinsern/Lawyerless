@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Accordion } from "react-accessible-accordion";
 
 import Questions from "../components/Questions";

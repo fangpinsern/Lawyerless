@@ -1,13 +1,50 @@
 .contact-form select{
     display: block;
-    margin: 0.3rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
-    padding: 0.25rem 0.35rem;
+    border: none;
+    padding: 0.35rem;
+}
+
+#case-types {
+    margin: 1.5rem 0rem;
     border-radius: 0.15rem;
 }
 
-.dropdown_option:hover,
-.dropdown_option.hover {
-    background-color: red;
+#contact-dropdown-form {
+    box-shadow: none;
+}
+
+.contact-form option {
+    background-color: lightgrey;
+    color: rgb(49, 49, 49);
+}
+
+.contact-form {
+    box-shadow: none;
+    border: none;
+}
+
+.start-final button {
+    width: 50%;
+    left: 25%;
+    position: relative;
+    margin: 0.2rem;
+}
+
+.start-final h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.start-final p {
+    font-size: 0.95rem;
+}
+
+.start-final {
+    width: 50%;
+    left: 25%;
+    position: relative;
+    padding: 1rem;
+    border: none;
+    box-shadow: 0px 2px 9px rgba(49, 49, 49, 0.2);
+    margin-top: 1rem;
 }
