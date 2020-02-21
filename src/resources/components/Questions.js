@@ -18,7 +18,7 @@ function Questions(props) {
         <AccordionItemButton>{props.faq.question}</AccordionItemButton>
       </AccordionItemHeading>
       <AccordionItemPanel>
-        <p>{props.faq.answer}</p>
+        <div>{props.faq.answer}</div>
       </AccordionItemPanel>
     </AccordionItem>
   );

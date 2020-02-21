@@ -45,23 +45,23 @@ function Faq() {
         },
 
         {
-            key: 6,
+            key: 7,
             question: "Forms 10: Memorandum of Appearance",
             answer: <p>A <a href="https://sso.agc.gov.sg/SL/SCJA1969-R5?ProvIds=SaA-#SaA-">Memorandum of Appearance</a> states your intention to appear in court and challenge the claim. It must be filed within 8 days of receiving the Writ of Summons</p>
 
         },
         {
-            key: 7,
+            key: 8,
             question: "Self-Help: Law Society Pro Bono Clinic",
             answer: <p><a href="https://www.lawsocprobono.org/Pages/default.aspx ">Law Society Pro-Bono Services</a></p>
         },
         {
-            key: 8,
+            key: 9,
             question: "Self-Help: Legal Clinic",
             answer: <p><a href="https://legalclinics.sg">Legal Clinics</a> offers a free-of-charge service for an hour of a lawyer's time, and they can help streamline the application process and advice</p>
         },
         {
-            key: 9,
+            key: 10,
             question: "Location - State Court",
             answer: <p><a target="_blank" href="https://goo.gl/maps/1rg6cnoi4b7AaFqH6"> <img alt="State Court Location" width="395" height="300" src="https://www.statecourts.gov.sg/cws/Resources/Documents/SC%20Towers%20Map_v2.jpg"></img></a></p>
         }
