@@ -100,9 +100,15 @@ function MagistratesCourts(props) {
         </p>
         <p>
           b. A writ of summons commences the action, and must be in Form 2 of
-          the Rules of Court. An empty copy is available at this link:
-          https://www.supremecourt.gov.sg/docs/default-source/default-document-library/civil-proceedings/writ-of-summons.pdf.
-          Do fill in the blank spaces with the relevant details.
+          the Rules of Court. An empty copy is available{" "}
+          <a
+            href="https://www.supremecourt.gov.sg/docs/default-source/default-document-library/civil-proceedings/writ-of-summons.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
+          {". "}Do fill in the blank spaces with the relevant details.
         </p>
         <p>
           c. A statement of claim sets out the relevant facts establishing your
@@ -110,9 +116,10 @@ function MagistratesCourts(props) {
         </p>
         <p>
           d. Filing a document means that you are submitting it to the Court.
-          Filings have to be done at the CrimsonLogic Service Bureau: link to
-          gmaps location (133 New Bridge Road #19-01/02, Chinatown Point
-          S(059413))
+          Filings have to be done at the{" "}
+          <a href="https://www.google.com/maps?ll=1.285234,103.844725&z=15&t=m&hl=en-SG&gl=US&mapclient=embed&q=1%C2%B017%2706.8%22N+103%C2%B050%2741.0%22E+1.285234,+103.844725@1.285234,103.844725">
+            CrimsonLogic Service Bureau - Chinatown Point
+          </a>
         </p>
         <Button type="button" inverse onClick={step1done}>
           Done
@@ -127,12 +134,19 @@ function MagistratesCourts(props) {
           </p>
           <p>
             You may make an appointment for service of the Writ by filling up a
-            "Request for Process Server" form at the Central Registry (State
-            Courts Towers on Level 2). If the Defendant is an individual, the
-            Writ must be directly served on him/her.
+            "Request for Process Server" form at the{" "}
+            <a
+              href="https://www.google.com/maps/place/State+Courts/@1.2869134,103.842924,15z/data=!4m2!3m1!1s0x0:0xdfd55f08c1512bb3?sa=X&ved=2ahUKEwiLzN2NpOPnAhXrxDgGHQGcD_QQ_BIwEnoECB4QCA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Central Registry
+            </a>
+            {" "}(State Courts Towers on Level 2). If the Defendant is an
+            individual, the Writ must be directly served on him/her.
           </p>
           <p>
-            Note down the date which the defendant receives the Writ as it will
+            *Note down the date which the defendant receives the Writ as it will
             impact the following steps.
           </p>
           <Button type="button" inverse onClick={step2done}>

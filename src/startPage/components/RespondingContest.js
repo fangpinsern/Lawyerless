@@ -41,6 +41,11 @@ function RespondingContest() {
     setSkipToSix(false);
   };
 
+  const step1short = () => {
+    respondingformInputHandler(arrKeys[0], "undone", false);
+    setSkipToSix(true);
+  }
+
   const skipToSix = () => {
     setSkipToSix(true);
   };
@@ -49,6 +54,11 @@ function RespondingContest() {
     respondingformInputHandler(arrKeys[1], "done", true);
     setSkipToSix(false);
   };
+
+  const step2short = () => {
+    respondingformInputHandler(arrKeys[1], "undone", false);
+    setSkipToSix(true);
+  }
   /*
     const step3done = () => {
       respondingformInputHandler(arrKeys[2], "done", true);
@@ -82,7 +92,7 @@ function RespondingContest() {
         <Button type="button" inverse onClick={step1done}>
           Done
         </Button>
-        <Button type="button" inverse onClick={skipToSix}>
+        <Button type="button" inverse onClick={step1short}>
           I have missed the deadline!
         </Button>
       </Card>
@@ -93,7 +103,7 @@ function RespondingContest() {
           <Button type="button" inverse onClick={step2done}>
             Done
           </Button>
-          <Button type="button" inverse onClick={skipToSix}>
+          <Button type="button" inverse onClick={step2short}>
             I have missed the deadline!
           </Button>
         </Card>
@@ -111,7 +121,7 @@ function RespondingContest() {
         </Card>
       )}
 
-      {inputValues[arrKeys[2]].value === "yes" && (
+      {inputValues[arrKeys[2]].value === "yes" && !skipToSixState && (
         <Card>
           <p>
             Pleadings will be deemed closed 14 days after service of the reply
@@ -124,7 +134,7 @@ function RespondingContest() {
         </Card>
       )}
 
-      {inputValues[arrKeys[2]].value === "no" && (
+      {inputValues[arrKeys[2]].value === "no" && !skipToSixState && (
         <Card>
           <p>The pleadings will close 14 days after the defence is served.</p>
           <Button type="button" inverse onClick={restart}>

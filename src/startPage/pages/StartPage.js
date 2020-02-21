@@ -28,7 +28,7 @@ function StartPage() {
   };
   const resetHandler = () => {
     progress.reset();
-    localStorage.removeItem("magForm")
+    localStorage.removeItem("magForm");
   };
   // End progress bar context
 
@@ -72,29 +72,42 @@ function StartPage() {
               "day"
             );
             if (sixYearsHavePassed) {
-              output =
-                output +
-                "Unfortunately, the time limit for commencing an action for property damage has passed. ";
+              output = (
+                <h2>
+                  Unfortunately, the time limit for commencing an action for
+                  personal injury has passed.
+                </h2>
+              );
             } else {
               const x = parseInt(valueOfClaim);
               switch (true) {
                 case x < 20000:
-                  output =
-                    output +
-                    "Your Claim needs to be filed in the Small Claims Tribunal.";
+                  output = (
+                    <h2>
+                      Your Claim needs to be filed in the Small Claims Tribunal.
+                    </h2>
+                  );
                   break;
                 case x < 30000:
-                  output =
-                    output +
-                    "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court.";
+                  output = (
+                    <h2>
+                      If you and the Respondent both agree, this claim can be
+                      filed in the Small Claims Tribunal. Otherwise, then it
+                      needs to be filed in the Magistrate's Court.
+                    </h2>
+                  );
                   break;
                 case x < 60000:
                   output = <MagistratesCourts />;
                   break;
                 default:
-                  output =
-                    output +
-                    "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice.";
+                  output = (
+                    <h2>
+                      Your claim needs to be filed in either the District Court
+                      or the Hight Court based on the value of your claim. You
+                      ought to consult a lawyer for advice.
+                    </h2>
+                  );
               }
             }
             return output;
@@ -141,29 +154,42 @@ function StartPage() {
             ).isAfter(dateOfIncident, "day");
             console.log(threeYearsHavePassed);
             if (threeYearsHavePassed) {
-              output =
-                output +
-                "Unfortunately, the time limit for commencing an action for personal injury has passed. ";
+              output = (
+                <h2>
+                  Unfortunately, the time limit for commencing an action for
+                  personal injury has passed.
+                </h2>
+              );
             } else {
               const x = parseInt(valueOfClaim);
               switch (true) {
                 case x < 20000:
-                  output =
-                    output +
-                    "Your Claim needs to be filed in the Small Claims Tribunal.";
+                  output = (
+                    <h2>
+                      Your Claim needs to be filed in the Small Claims Tribunal.
+                    </h2>
+                  );
                   break;
                 case x < 30000:
-                  output =
-                    output +
-                    "If you and the Respondent both agree, this claim can be filed in the Small Claims Tribunal. Otherwise, then it needs to be filed in the Magistrate's Court.";
+                  output = (
+                    <h2>
+                      If you and the Respondent both agree, this claim can be
+                      filed in the Small Claims Tribunal. Otherwise, then it
+                      needs to be filed in the Magistrate's Court.
+                    </h2>
+                  );
                   break;
                 case x < 60000:
                   output = <MagistratesCourts />;
                   break;
                 default:
-                  output =
-                    output +
-                    "Your claim needs to be filed in either the District Court or the Hight Court based on the value of your claim. You ought to consult a lawyer for advice.";
+                  output = (
+                    <h2>
+                      Your claim needs to be filed in either the District Court
+                      or the Hight Court based on the value of your claim. You
+                      ought to consult a lawyer for advice.
+                    </h2>
+                  );
               }
             }
             return output;
@@ -178,7 +204,7 @@ function StartPage() {
           type: "output",
           output: "",
           endFunction: () => {
-            return <RespondingContest />
+            return <RespondingContest />;
           },
           isValid: true
         }
@@ -187,8 +213,8 @@ function StartPage() {
         end: {
           type: "output",
           output: "",
-          endFunction: () => { 
-            return <h2>Follow instructions given in the summon.</h2>
+          endFunction: () => {
+            return <h2>Follow instructions given in the summon.</h2>;
           },
           isValid: true
         }
@@ -257,7 +283,10 @@ function StartPage() {
   });
   // End Local Storage
 
-  const actionOrReaction = actionType === arrayOfAction[0] ? "What would you like to take action for?" : "Would you like to contest the claim?"
+  const actionOrReaction =
+    actionType === arrayOfAction[0]
+      ? "What would you like to take action for?"
+      : "Would you like to contest the claim?";
 
   const arrayOfInputs = Object.keys(committingFormState.inputs);
 
