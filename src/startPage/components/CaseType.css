@@ -62,3 +62,9 @@
     box-shadow: 0px 2px 9px rgba(49, 49, 49, 0.2);
     margin-top: 1rem;
 }
+
+#restart-form button{
+    width: 50%;
+    left: 25%;
+    position: relative;
+}

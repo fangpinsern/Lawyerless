@@ -57,7 +57,7 @@ function Faq() {
           alt="This is the faq page"
         />
       </div>
-      <Card>
+      <Card className="faq-format">
         <Accordion allowZeroExpanded="true">
           {faqs.map(faq => {
             return <Questions key={faq.key} faq={faq} />;
