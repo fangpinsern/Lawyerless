@@ -63,8 +63,6 @@
     margin-top: 1rem;
 }
 
-#restart-form button{
-    width: 50%;
-    left: 25%;
-    position: relative;
+#restart-form {
+    margin: 2rem;
 }
