@@ -187,7 +187,7 @@ function StartPage() {
         end: {
           type: "output",
           output: "Follow instructions given in the summon.",
-          endFunction: () => {},
+          endFunction: () => { },
           isValid: true
         }
       }

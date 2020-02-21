@@ -6,11 +6,14 @@
   background: black;
   color: white;
   cursor: pointer;
-  margin: 0.3rem;
   text-decoration: none;
   display: inline-block;
   transition-duration: 0.3s;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0.3rem;
+}
+
+.button1 {
+  margin-left: 1rem;
 }
 
 .button:focus {
