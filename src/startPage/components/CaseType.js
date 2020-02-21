@@ -36,6 +36,7 @@ function CaseType(props) {
   return (
     <Card>
       <form className="contact-form" id="contact-dropdown-form">
+      <h2>{props.label}</h2>
         <select
           id="case-types"
           name="typelist"

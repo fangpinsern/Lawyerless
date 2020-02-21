@@ -28,9 +28,6 @@ app.get('/*', function (req, res) {
 });
 
 //For mailer
-app.get("/", (req, res, next) => {
-  res.send("Welcome to my api");
-});
 
 var transport = {
   host: "smtp.gmail.com",

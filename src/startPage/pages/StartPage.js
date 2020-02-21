@@ -186,8 +186,10 @@ function StartPage() {
       "Do Not Contest Claim": {
         end: {
           type: "output",
-          output: "Follow instructions given in the summon.",
-          endFunction: () => { },
+          output: "",
+          endFunction: () => { 
+            return <h2>Follow instructions given in the summon.</h2>
+          },
           isValid: true
         }
       }
@@ -255,6 +257,8 @@ function StartPage() {
   });
   // End Local Storage
 
+  const actionOrReaction = actionType === arrayOfAction[0] ? "What would you like to take action for?" : "Would you like to contest the claim?"
+
   const arrayOfInputs = Object.keys(committingFormState.inputs);
 
   const arrayOfInputsReturned = arrayOfInputs.map((input, i) => {
@@ -294,6 +298,7 @@ function StartPage() {
           setFormType={setActionType}
           formtype={actionType}
           optionsAvailable={arrayOfAction}
+          label="What would you like to do?"
         />
       );
     case 1:
@@ -305,6 +310,7 @@ function StartPage() {
           setFormType={setFormTypeWrapper}
           formtype={formType}
           optionsAvailable={arrayOfForms}
+          label={actionOrReaction}
         />
       );
     default:
