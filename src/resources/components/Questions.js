@@ -13,7 +13,7 @@ import "../pages/accordion.css";
 
 function Questions(props) {
   return (
-    <AccordionItem>
+    <AccordionItem className="faq-accordion">
       <AccordionItemHeading>
         <AccordionItemButton>{props.faq.question}</AccordionItemButton>
       </AccordionItemHeading>

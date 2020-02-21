@@ -74,13 +74,13 @@ function Faq() {
                     alt="This is the faq page"
                 />
             </div>
-                <Accordion allowZeroExpanded="true">
-                    {faqs.map(faq => {
-                        return <Questions key={faq.key} faq={faq} />;
-                    })}
-                </Accordion>
-                <br />
-                <ContactUs />
+            <Accordion allowZeroExpanded="true">
+                {faqs.map(faq => {
+                    return <Questions key={faq.key} faq={faq} />;
+                })}
+            </Accordion>
+            <br />
+            <ContactUs />
         </React.Fragment>
     );
 }

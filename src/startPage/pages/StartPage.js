@@ -176,7 +176,7 @@ function StartPage() {
       "Contest Claim": {
         end: {
           type: "output",
-          output: "Streamed line step by step process",
+          output: "",
           endFunction: () => {
             return <RespondingContest />
           },
