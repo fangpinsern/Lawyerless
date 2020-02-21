@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../shared/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hooks";
-
-//
 
 function MagistratesCourts(props) {
   const MagForm = {
@@ -29,10 +27,23 @@ function MagistratesCourts(props) {
   const arrKeys = Object.keys(MagForm);
   const numSteps = arrKeys.length;
 
-  const [magFormState, magFormInputHandler] = useForm(MagForm, false);
+  const [magFormState, magFormInputHandler, setFormData] = useForm(MagForm, false);
 
   const [shortCircuit, setShortCircuit] = useState(false);
   
+  useEffect(() => {
+    const data = localStorage.getItem("magForm");
+    if(data) {
+      const parseData = JSON.parse(data);
+      setFormData(parseData.inputs, parseData.isValid);
+    }
+  }, [setFormData])
+
+  useEffect(() => {
+    localStorage.setItem("magForm", JSON.stringify(magFormState));
+    console.log("i am here");
+  })
+
   // Button functions
   const step1done = () => {
     magFormInputHandler("Filing of the Summons", "filled", true);
