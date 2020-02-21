@@ -1,14 +1,12 @@
-/* .faq-image img {
-  width: 100%;
-  height: 500px;
-} */
+
 .faq-image {
   width: 100%;
-  height: 500px;
+  height: 100%;
   overflow: hidden;
+  position: fixed;
+  opacity: 0.15;
 }
 
-.faq-image img {
-  width: 100%;
-  height: 500px;
+.faq-format {
+  position: absolute;
 }
