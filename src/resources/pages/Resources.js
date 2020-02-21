@@ -2,8 +2,6 @@ import React from "react";
 import { Accordion } from "react-accessible-accordion";
 
 import Questions from "../components/Questions";
-import Card from "../../shared/UIElements/Card";
-import ContactUs from "../components/ContactUs";
 
 function Faq() {
 
@@ -80,7 +78,6 @@ function Faq() {
                 })}
             </Accordion>
             <br />
-            <ContactUs />
         </React.Fragment>
     );
 }

@@ -31,7 +31,7 @@ function RespondingContest() {
   const [
     respondingFormState,
     respondingformInputHandler,
-    setFormData
+    //setFormData
   ] = useForm(respondingForm, false);
 
   const [skipToSixState, setSkipToSix] = useState(false);
@@ -49,11 +49,12 @@ function RespondingContest() {
     respondingformInputHandler(arrKeys[1], "done", true);
     setSkipToSix(false);
   };
-
-  const step3done = () => {
-    respondingformInputHandler(arrKeys[2], "done", true);
-    setSkipToSix(false);
-  };
+  /*
+    const step3done = () => {
+      respondingformInputHandler(arrKeys[2], "done", true);
+      setSkipToSix(false);
+    };
+  */
 
   const step4yes = () => {
     respondingformInputHandler(arrKeys[2], "yes", true);
