@@ -77,7 +77,7 @@ function GeneralForm(props) {
         </Card>
       )}
       {output && (
-        <Card className="start-final">
+        <Card>
           <p>{output}</p>
         </Card>
       )}

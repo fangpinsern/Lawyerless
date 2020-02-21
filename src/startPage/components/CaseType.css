@@ -18,9 +18,14 @@
     color: rgb(49, 49, 49);
 }
 
+.contact-form {
+    box-shadow: none;
+    border: none;
+}
+
 .start-final button {
-    width: 20%;
-    left: 40%;
+    width: 50%;
+    left: 25%;
     position: relative;
     margin: 0.2rem;
 }
@@ -40,5 +45,6 @@
     position: relative;
     padding: 1rem;
     border: none;
-    box-shadow: 0px 2px 9px rgba(49, 49, 49, 0.5);
+    box-shadow: 0px 2px 9px rgba(49, 49, 49, 0.2);
+    margin-top: 1rem;
 }
