@@ -199,7 +199,7 @@ function MagistratesCourts(props) {
               faq={{
                 question: "Reply to the defendant",
                 answer:
-                  "The reply to the defendant is your optional opportunity to respondto any points made in the defence which were not dealt with in youroriginal claim."
+                  "The reply to the defendant is your optional opportunity to respond to any points made in the defence which were not dealt with in youroriginal claim."
               }}
             />
             <Questions
