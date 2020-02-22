@@ -87,7 +87,7 @@ function GeneralForm(props) {
         </Card>
       )}
       {formFieldId === "end" && (
-        <Button type="button" className="button1" inverse onClick={resetHandler}>
+        <Button type="button" inverse onClick={resetHandler}>
           Restart Form
         </Button>
       )}
