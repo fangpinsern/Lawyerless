@@ -51,7 +51,7 @@ function StartPage() {
           validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
           type: "input",
           output:
-            "Information on how to calculate value of claim for personal injury",
+            "The value of your claim should depend on the value of the damaged property.",
           placeholder: "Value of claim",
           label: "Value of claim",
           errorText: "Please enter a valid value",
@@ -132,7 +132,7 @@ function StartPage() {
           validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
           type: "input",
           output:
-            "Contain information on how to calculate value of claim for personal injury",
+            "There are two categories of compensation that the Court awards for personal injury cases. The first is special damages, which are losses or expenses incurred during the accident, such as medical expenses, loss of income during recovery, etc. The second, more complicated type, is general damages, which includes factors such as pain and suffering, loss of future earning, etc. ",
           placeholder: "Value of claim",
           label: "Value of claim",
           errorText: "Please enter a valid value",
@@ -165,18 +165,18 @@ function StartPage() {
               switch (true) {
                 case x < 20000:
                   output = (
-                    <h2>
+                    <h3>
                       Your Claim needs to be filed in the Small Claims Tribunal.
-                    </h2>
+                    </h3>
                   );
                   break;
                 case x < 30000:
                   output = (
-                    <h2>
+                    <h3>
                       If you and the Respondent both agree, this claim can be
                       filed in the Small Claims Tribunal. Otherwise, then it
                       needs to be filed in the Magistrate's Court.
-                    </h2>
+                    </h3>
                   );
                   break;
                 case x < 60000:
@@ -184,11 +184,11 @@ function StartPage() {
                   break;
                 default:
                   output = (
-                    <h2>
+                    <h3>
                       Your claim needs to be filed in either the District Court
                       or the Hight Court based on the value of your claim. You
                       ought to consult a lawyer for advice.
-                    </h2>
+                    </h3>
                   );
               }
             }
