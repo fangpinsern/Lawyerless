@@ -51,7 +51,7 @@ function StartPage() {
           validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
           type: "input",
           output:
-            "Information on how to calculate value of claim for personal injury",
+            "Information on how to calculate value of claim for property damage",
           placeholder: "Value of claim",
           label: "Value of claim",
           errorText: "Please enter a valid value",

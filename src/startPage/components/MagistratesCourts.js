@@ -39,6 +39,7 @@ function MagistratesCourts(props) {
   );
 
   const [shortCircuit, setShortCircuit] = useState(false);
+  const [caseManagementState, setCaseManagementState] = useState(false);
 
   useEffect(() => {
     const data = localStorage.getItem("magForm");
@@ -88,11 +89,21 @@ function MagistratesCourts(props) {
     setShortCircuit(false);
   };
 
+  const toCaseManagement = () => {
+    setCaseManagementState(true);
+  }
+
+  const undoCaseManagement = () => {
+    setCaseManagementState(false);
+  }
+
   // End button function
+
+
 
   return (
     <React.Fragment>
-      <Card>
+      {!caseManagementState && <Card>
         <h3>{[arrKeys[0]]}</h3>
         <p>
           a. To begin the process, you have to file and serve a Writ of Summons,
@@ -124,8 +135,8 @@ function MagistratesCourts(props) {
         <Button type="button" inverse onClick={step1done}>
           Done
         </Button>
-      </Card>
-      {magFormState.inputs[arrKeys[0]].isValid && (
+      </Card> }
+      {magFormState.inputs[arrKeys[0]].isValid && !caseManagementState && (
         <Card>
           <h3>{[arrKeys[1]]}</h3>
           <p>
@@ -154,7 +165,7 @@ function MagistratesCourts(props) {
           </Button>
         </Card>
       )}
-      {magFormState.inputs[arrKeys[1]].isValid && (
+      {magFormState.inputs[arrKeys[1]].isValid && !caseManagementState && (
         <Card>
           <h3>{[arrKeys[2]]}</h3>
           <p>
@@ -169,7 +180,7 @@ function MagistratesCourts(props) {
           </Button>
         </Card>
       )}
-      {magFormState.inputs[arrKeys[2]].isValid && (
+      {magFormState.inputs[arrKeys[2]].isValid && !caseManagementState && (
         <Card>
           <h3>{[arrKeys[3]]}</h3>
           <Button type="button" inverse onClick={step4done}>
@@ -180,7 +191,7 @@ function MagistratesCourts(props) {
           </Button>
         </Card>
       )}
-      {magFormState.inputs[arrKeys[3]].isValid && !shortCircuit && (
+      {magFormState.inputs[arrKeys[3]].isValid && !shortCircuit && !caseManagementState && (
         <Card>
           <h3>Replying to the defendant and defence to the counterclaim</h3>
           <Accordion allowZeroExpanded="true">
@@ -214,22 +225,42 @@ function MagistratesCourts(props) {
             counterclaim, the pleadings will close 14 days after the defence is
             served.
           </p>
-          <Button type="button" inverse onClick={reset}>
-            Restart
+          <Button type="button" inverse onClick={toCaseManagement}>
+            Moving on to Case Management
           </Button>
         </Card>
       )}
-      {shortCircuit && (
+      {shortCircuit && !caseManagementState && (
         <Card>
           <h3>
             You may apply to the Court for judgement to be entered against the
-            defendent
+            defendant
           </h3>
           <Button type="button" inverse onClick={reset}>
             Restart
           </Button>
         </Card>
       )}
+      {caseManagementState && (
+        <Card>
+          <h3>What is a Case Management Conference (CMC)?</h3>
+          <p>A case management conference (“CMC”) is a meeting between the parties and the Judge for the smooth management of the case</p>
+          <p>The CMC will be convened by the court within 50 days of the defence being filed (Order 108 Rule 3 of the Rules of Court).</p>
+        </Card>
+      )}
+      {caseManagementState && (<Card>
+        <h3>Before attending the CMC</h3>
+        <p><a href="https://epd.statecourts.gov.sg/downloads/Appendix-A-Form-3.pdf">Form 3: List of Issues in Dispute and List of Witnesses</a></p>
+        <p>This will inform the Court and the defendant of the areas of dispute and the witnesses that will be called to give evidence in support of your case. </p>
+        <p><a href="https://epd.statecourts.gov.sg/downloads/Appendix-A-Form-7.pdf">Form 7: ADR Form</a></p>
+        <p>This will inform the Court and the defendant of which Alternative Dispute Resolution option you prefer to help resolve the case.</p>
+      </Card>)}
+      {caseManagementState && (<Card>
+        <h3>At the CMC, this is what you can expect</h3>
+        <p>The Court will assist you to narrow the issues and deal with any procedural matters, as well as the available options with the parties for resolution of case</p>
+        <p>You may be advised to take up Alternate Dispute Resolution options (mediation, conciliation, neutral evaluation, arbitration). The objective is to settle the dispute amicably and avoid going to trial.</p>
+        <p>If the case cannot be resolved without a trial, the Court will give directions for trial.</p>
+      </Card>)}
     </React.Fragment>
   );
 
