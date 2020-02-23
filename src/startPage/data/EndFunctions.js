@@ -123,9 +123,6 @@ export const EndFunctions = endFuncName => {
       };
 
     default:
-      console.log("There is no such function. Check your name of functions")
-      return () => {
-          return <h2>Something went wrong</h2>
-      }
+      return;
   }
 };
