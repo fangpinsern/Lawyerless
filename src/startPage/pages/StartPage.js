@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect } from "react";
 // Imports from local components
 import { ProgressContext } from "../../shared/context/progressBar-context";
 import CaseType from "../components/CaseType";
-
+import { EndFunctions } from "../data/EndFunctions"
 // Imports for styling
 import "./StartPage.css";
 import { useForm } from "../../shared/hooks/form-hooks";
@@ -66,7 +66,7 @@ function StartPage() {
 
     if (data) {
       const parseData = JSON.parse(data);
-      parseData.end.endFunction = eval("(" + compressedFunc + ")");
+      parseData.end.endFunction = compressedFunc ;
       setFormData(parseData, isValid);
     }
   }, [setFormData]);
@@ -103,7 +103,7 @@ function StartPage() {
         validators={committingFormState.inputs[input].validators}
         type={committingFormState.inputs[input].type}
         output={committingFormState.inputs[input].output}
-        outputFunction={committingFormState.inputs[input].endFunction}
+        outputFunction={EndFunctions(committingFormState.inputs[input].endFunction)}
         nextStep={nextStepHandler}
         prevStep={previousStepHandler}
         reset={resetHandler}

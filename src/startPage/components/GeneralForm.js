@@ -49,6 +49,11 @@ function GeneralForm(props) {
 
   return (
     <React.Fragment>
+      {type === "selector" && (
+        <Card>
+          
+        </Card>
+      )}
       {type === "input" && (
         <Card id="start-card">
           <form className="contact-form">
