@@ -51,7 +51,7 @@ function StartPage() {
           validators: [VALIDATOR_REQUIRE(), VALIDATOR_NUMBER()],
           type: "input",
           output:
-            "Information on how to calculate value of claim for property damage",
+            "The value of your claim should depend on the value of the damaged property.",
           placeholder: "Value of claim",
           label: "Value of claim",
           errorText: "Please enter a valid value",
