@@ -46,10 +46,6 @@ function RespondingContest() {
     setSkipToSix(true);
   }
 
-  const skipToSix = () => {
-    setSkipToSix(true);
-  };
-
   const step2done = () => {
     respondingformInputHandler(arrKeys[1], "done", true);
     setSkipToSix(false);

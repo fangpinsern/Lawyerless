@@ -91,51 +91,52 @@ function MagistratesCourts(props) {
 
   const toCaseManagement = () => {
     setCaseManagementState(true);
-  }
+  };
 
   const undoCaseManagement = () => {
     setCaseManagementState(false);
-  }
+  };
 
   // End button function
 
-
-
   return (
     <React.Fragment>
-      {!caseManagementState && <Card>
-        <h3>{[arrKeys[0]]}</h3>
-        <p>
-          a. To begin the process, you have to file and serve a Writ of Summons,
-          along with a statement of claim.
-        </p>
-        <p>
-          b. A writ of summons commences the action, and must be in Form 2 of
-          the Rules of Court. An empty copy is available{" "}
-          <a
-            href="https://www.supremecourt.gov.sg/docs/default-source/default-document-library/civil-proceedings/writ-of-summons.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            here
-          </a>
-          {". "}Do fill in the blank spaces with the relevant details.
-        </p>
-        <p>
-          c. A statement of claim sets out the relevant facts establishing your
-          claim. This may be endorsed on the writ and served together with it.
-        </p>
-        <p>
-          d. Filing a document means that you are submitting it to the Court.
-          Filings have to be done at the{" "}
-          <a href="https://www.google.com/maps?ll=1.285234,103.844725&z=15&t=m&hl=en-SG&gl=US&mapclient=embed&q=1%C2%B017%2706.8%22N+103%C2%B050%2741.0%22E+1.285234,+103.844725@1.285234,103.844725">
-            CrimsonLogic Service Bureau - Chinatown Point
-          </a>
-        </p>
-        <Button type="button" inverse onClick={step1done}>
-          Done
-        </Button>
-      </Card> }
+      {!caseManagementState && (
+        <Card>
+          <h3>{[arrKeys[0]]}</h3>
+          <p>
+            a. To begin the process, you have to file and serve a Writ of
+            Summons, along with a statement of claim.
+          </p>
+          <p>
+            b. A writ of summons commences the action, and must be in Form 2 of
+            the Rules of Court. An empty copy is available{" "}
+            <a
+              href="https://www.supremecourt.gov.sg/docs/default-source/default-document-library/civil-proceedings/writ-of-summons.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              here
+            </a>
+            {". "}Do fill in the blank spaces with the relevant details.
+          </p>
+          <p>
+            c. A statement of claim sets out the relevant facts establishing
+            your claim. This may be endorsed on the writ and served together
+            with it.
+          </p>
+          <p>
+            d. Filing a document means that you are submitting it to the Court.
+            Filings have to be done at the{" "}
+            <a href="https://www.google.com/maps?ll=1.285234,103.844725&z=15&t=m&hl=en-SG&gl=US&mapclient=embed&q=1%C2%B017%2706.8%22N+103%C2%B050%2741.0%22E+1.285234,+103.844725@1.285234,103.844725">
+              CrimsonLogic Service Bureau - Chinatown Point
+            </a>
+          </p>
+          <Button type="button" inverse onClick={step1done}>
+            Done
+          </Button>
+        </Card>
+      )}
       {magFormState.inputs[arrKeys[0]].isValid && !caseManagementState && (
         <Card>
           <h3>{[arrKeys[1]]}</h3>
@@ -152,9 +153,9 @@ function MagistratesCourts(props) {
               rel="noopener noreferrer"
             >
               Central Registry
-            </a>
-            {" "}(State Courts Towers on Level 2). If the Defendant is an
-            individual, the Writ must be directly served on him/her.
+            </a>{" "}
+            (State Courts Towers on Level 2). If the Defendant is an individual,
+            the Writ must be directly served on him/her.
           </p>
           <p>
             *Note down the date which the defendant receives the Writ as it will
@@ -191,45 +192,47 @@ function MagistratesCourts(props) {
           </Button>
         </Card>
       )}
-      {magFormState.inputs[arrKeys[3]].isValid && !shortCircuit && !caseManagementState && (
-        <Card>
-          <h3>Replying to the defendant and defence to the counterclaim</h3>
-          <Accordion allowZeroExpanded="true">
-            <Questions
-              faq={{
-                question: "Reply to the defendant",
-                answer:
-                  "The reply to the defendant is your optional opportunity to respond to any points made in the defence which were not dealt with in youroriginal claim."
-              }}
-            />
-            <Questions
-              faq={{
-                question: "Defence to the counterclaim",
-                answer:
-                  "The defence to the counterclaim is your opportunity to respond to the counterclaim made by the defendant, wherein he/she alleges that they have a claim, or are entitled to relief, against you."
-              }}
-            />
-          </Accordion>
-          <p>
-            You can choose to file and serve a Reply and Defence to
-            Counterclaim, or just a Defence to Counterclaim if there is no
-            Reply. This must be done within 14 days of you being served with the
-            defence and counterclaim by the defendant.
-          </p>
-          <p>
-            Pleadings will be deemed closed 14 days after service of the reply
-            or service of the defence to the counterclaim.
-          </p>
-          <p>
-            If you choose not to reply and/or file a defence to the
-            counterclaim, the pleadings will close 14 days after the defence is
-            served.
-          </p>
-          <Button type="button" inverse onClick={toCaseManagement}>
-            Moving on to Case Management
-          </Button>
-        </Card>
-      )}
+      {magFormState.inputs[arrKeys[3]].isValid &&
+        !shortCircuit &&
+        !caseManagementState && (
+          <Card>
+            <h3>Replying to the defendant and defence to the counterclaim</h3>
+            <Accordion allowZeroExpanded="true">
+              <Questions
+                faq={{
+                  question: "Reply to the defendant",
+                  answer:
+                    "The reply to the defendant is your optional opportunity to respond to any points made in the defence which were not dealt with in youroriginal claim."
+                }}
+              />
+              <Questions
+                faq={{
+                  question: "Defence to the counterclaim",
+                  answer:
+                    "The defence to the counterclaim is your opportunity to respond to the counterclaim made by the defendant, wherein he/she alleges that they have a claim, or are entitled to relief, against you."
+                }}
+              />
+            </Accordion>
+            <p>
+              You can choose to file and serve a Reply and Defence to
+              Counterclaim, or just a Defence to Counterclaim if there is no
+              Reply. This must be done within 14 days of you being served with
+              the defence and counterclaim by the defendant.
+            </p>
+            <p>
+              Pleadings will be deemed closed 14 days after service of the reply
+              or service of the defence to the counterclaim.
+            </p>
+            <p>
+              If you choose not to reply and/or file a defence to the
+              counterclaim, the pleadings will close 14 days after the defence
+              is served.
+            </p>
+            <Button type="button" inverse onClick={toCaseManagement}>
+              Moving on to Case Management
+            </Button>
+          </Card>
+        )}
       {shortCircuit && !caseManagementState && (
         <Card>
           <h3>
@@ -244,23 +247,63 @@ function MagistratesCourts(props) {
       {caseManagementState && (
         <Card>
           <h3>What is a Case Management Conference (CMC)?</h3>
-          <p>A case management conference (“CMC”) is a meeting between the parties and the Judge for the smooth management of the case</p>
-          <p>The CMC will be convened by the court within 50 days of the defence being filed (Order 108 Rule 3 of the Rules of Court).</p>
+          <p>
+            A case management conference (“CMC”) is a meeting between the
+            parties and the Judge for the smooth management of the case
+          </p>
+          <p>
+            The CMC will be convened by the court within 50 days of the defence
+            being filed (Order 108 Rule 3 of the Rules of Court).
+          </p>
         </Card>
       )}
-      {caseManagementState && (<Card>
-        <h3>Before attending the CMC</h3>
-        <p><a href="https://epd.statecourts.gov.sg/downloads/Appendix-A-Form-3.pdf">Form 3: List of Issues in Dispute and List of Witnesses</a></p>
-        <p>This will inform the Court and the defendant of the areas of dispute and the witnesses that will be called to give evidence in support of your case. </p>
-        <p><a href="https://epd.statecourts.gov.sg/downloads/Appendix-A-Form-7.pdf">Form 7: ADR Form</a></p>
-        <p>This will inform the Court and the defendant of which Alternative Dispute Resolution option you prefer to help resolve the case.</p>
-      </Card>)}
-      {caseManagementState && (<Card>
-        <h3>At the CMC, this is what you can expect</h3>
-        <p>The Court will assist you to narrow the issues and deal with any procedural matters, as well as the available options with the parties for resolution of case</p>
-        <p>You may be advised to take up Alternate Dispute Resolution options (mediation, conciliation, neutral evaluation, arbitration). The objective is to settle the dispute amicably and avoid going to trial.</p>
-        <p>If the case cannot be resolved without a trial, the Court will give directions for trial.</p>
-      </Card>)}
+      {caseManagementState && (
+        <Card>
+          <h3>Before attending the CMC</h3>
+          <p>
+            <a href="https://epd.statecourts.gov.sg/downloads/Appendix-A-Form-3.pdf">
+              Form 3: List of Issues in Dispute and List of Witnesses
+            </a>
+          </p>
+          <p>
+            This will inform the Court and the defendant of the areas of dispute
+            and the witnesses that will be called to give evidence in support of
+            your case.{" "}
+          </p>
+          <p>
+            <a href="https://epd.statecourts.gov.sg/downloads/Appendix-A-Form-7.pdf">
+              Form 7: ADR Form
+            </a>
+          </p>
+          <p>
+            This will inform the Court and the defendant of which Alternative
+            Dispute Resolution option you prefer to help resolve the case.
+          </p>
+        </Card>
+      )}
+      {caseManagementState && (
+        <Card>
+          <h3>At the CMC, this is what you can expect</h3>
+          <p>
+            The Court will assist you to narrow the issues and deal with any
+            procedural matters, as well as the available options with the
+            parties for resolution of case
+          </p>
+          <p>
+            You may be advised to take up Alternate Dispute Resolution options
+            (mediation, conciliation, neutral evaluation, arbitration). The
+            objective is to settle the dispute amicably and avoid going to
+            trial.
+          </p>
+          <p>
+            If the case cannot be resolved without a trial, the Court will give
+            directions for trial.
+          </p>
+          <Button type="button" inverse onClick={undoCaseManagement}>
+            Previous page
+          </Button>
+        </Card>
+      )}
     </React.Fragment>
   );
 
